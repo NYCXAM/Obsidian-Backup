@@ -191,3 +191,5 @@ Hot encoding helps with categorical but sometimes can make the col size too big
 **Principal Component Analysis (PCA):**
 - A tool for dimensionality reduction
 - PCA on a dataset means: an ordered series of vectors along which the most cariance lies
+
+From mac
