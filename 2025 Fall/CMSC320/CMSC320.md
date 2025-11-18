@@ -191,3 +191,117 @@ Hot encoding helps with categorical but sometimes can make the col size too big
 **Principal Component Analysis (PCA):**
 - A tool for dimensionality reduction
 - PCA on a dataset means: an ordered series of vectors along which the most cariance lies
+
+## Lecture 10/21
+**Classification Problem:**
+- A target variable you want to predict (called "class" or "label")
+- A set of data that target label is known
+- New data that target label is unknown
+- A model is a mathematical object that assign label to data without label
+
+
+**K Nearest Neighbor (KNN):**
+- Find the neartest k points to the new data
+- Take the weighted avg of the labels based on the euclidean distance
+- Assign that label
+
+K values:
+- K = 1: the model will be lack of the ability to generalize (e.g. on more complicated dataset)
+- K = N: the model will just predict the mode of data
+
+
+## Lecture 10/23
+
+Smaller is better:
+- Fewer rules: More generalized
+- Many rules: More specificity
+
+**Entropy Gain:**
+The amount of entropy difference between different layers ![[Pasted image 20251023143705.png]]
+**Decision Tree Training:**
+- We want to get as close as possible to cutting the data in *half* with every split (to get the smallest tree)
+- Means we want the splits with the most differences in **information** before and after the split
+
+
+
+## Lecture 10/30 Classification
+**Overfitting**:
+Too good at predicting the training set, making decision based on entries that can't be generalized. (e.g. deciding if people can get the loan by that day's weather)
+
+**Underfitting**:
+Too generalized, it remember one rule and is applying it everywhere (e.g. only consider gpa for college application)
+
+
+|                | Predict Pos | Predict Neg |
+| -------------- | ----------- | ----------- |
+| **Actual Pos** | True Pos    | False Neg   |
+| **Actual Neg** | False Pos   | True Neg    |
+**Accuracy:** What fraction of predictions were correct?
+	=  $\frac{(TP + TN)}{(TP + TN + FP + FN} = \frac{\text{Correct predictions}}{\text{All predictions}}$
+
+**Precision:** Of all the cases predicted as positive, how many are true positive?
+	= $\frac{TP}{TP + FP}$
+
+**Recall:** Of all the true positive, how many did we correctly identify
+	= $\frac{TP}{TP + FN} = \frac{\text{True Positive}}{\text{All Positives}}$
+
+## Lecture 11/04 Regression
+**Do not use typical regression for time on x-axis**
+
+**Linear Regression:**
+*Needs:*
+- Linearity: The data must have a linear relationship
+- Autocorrelation: Errors must have no correlation
+- Homoscedasticity: Variance in the outliers must be constant
+
+We want to find the coefficients of the line: $f(x)=\beta_1x$ 
+Which minimize:
+$Error=\frac{1}{n}\sum_{i=1}^{n}(Y_i-f(X_i))^2$
+![[Pasted image 20251104142540.png]]
+
+==(IMPORTANT)**Gradient Descent:**==
+Calculate the vector, follow the vector that allow us move down the most
+
+How fast you go down( size of the small step): ==Learning rate==
+![[Pasted image 20251104142855.png]]
+
+*Pros:*
+- Simple and effective for ML
+- Scalable
+*Cons:*
+- Only applies to smooth functions (differentiable)
+- Might be trapped inside local minimal instead reaching of the global minimal
+**Examples:**
+- Education affecting wages
+- Weight and height
+- Grade based on study habits
+
+Exam extra credit:
+Talked about not using regressions to time related tasks in class
+
+**Polynomial Regression:**
+Easy to overfit
+Generally use it only for small degree polynomials
+
+**Regularization:**
+
+
+## Lecture 11/06 Time Series Data
+**Time Series:** Always one to one, like stock price. Can't use normal regressions because you need to maintain the temporal ordering
+
+**Autocorrelation**: Each datapoint in influenced by the pervious ones
+
+**Plot:**
+- Trend: upward or downward pattern that might affect future
+- Periodicity: Repetition of behavior in a regular pattern
+- Seasonality: Periodic behavior with a known period
+- Stationarity: the mean and variance remain constant over time
+- Heteroskedasticity: changing variance
+
+**Missing Values:**
+- Linear Imputation: good enough unless the gap is too big![[Pasted image 20251106144404.png]]
+- $\text{info gain} = H(parent) - H(chi ld)$
+- $\text{entropy} = -(1-p)\log_2(1-p)$ (Binary)
+- or
+- $\text{entorpy} = -\sum_x p(x)\log_2(p(x))$ (General)
+- 
