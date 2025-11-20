@@ -306,4 +306,12 @@ Generally use it only for small degree polynomials
 - $\text{entorpy} = -\sum_x p(x)\log_2(p(x))$ (General)
 
 ## Lecture 11/18, 11/20 Neural Network
+**Multi-layer Perceptron:**
+
+
+**Convolutional Neural Network:**
+Light weight model for image classification,
+- Object classification: Classify what object is in the image
+- Object localization: Classification + the location of that object in image
+- Semantic segmentation: Label all pixels
 
