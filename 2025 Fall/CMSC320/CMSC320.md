@@ -306,9 +306,6 @@ Generally use it only for small degree polynomials
 - $\text{entorpy} = -\sum_x p(x)\log_2(p(x))$ (General)
 
 ## Lecture 11/18, 11/20 Neural Network
-**Logistic Regression:**
-
-
 **Sigmoid:**
 
 **Soft max:**
