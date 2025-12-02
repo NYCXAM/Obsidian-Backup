@@ -325,3 +325,14 @@ Light weight model for image classification,
 **Transform learning:**
 
 
+
+## Lecture 12/02 Transformer
+
+**Natural Language Processing (NLP):**
+Tokenize the input string -> Convert words into vector by their meaning (the closer two words are, the closer their vector are in the embedding space) -> 
+
+
+**Embedding Space:**
+You feed different sentences that missing one word into a neural network, and let it predict what word go into the blank (I like ~~cats~~ because they are cute), and neural network will notice all words go in this blank are related to cute. If you do this with a rich training set then it will end up with a embedding space that encode the similarity between different words
+
+ 
