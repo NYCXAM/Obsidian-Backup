@@ -335,4 +335,9 @@ Tokenize the input string -> Convert words into vector by their meaning (the clo
 **Embedding Space:**
 You feed different sentences that missing one word into a neural network, and let it predict what word go into the blank (I like ~~cats~~ because they are cute), and neural network will notice all words go in this blank are related to cute. If you do this with a rich training set then it will end up with a embedding space that encode the similarity between different words
 
- 
+
+## Lecture 12/04 Graph/Reviews
+
+**Perceptron:**
+- Purpose: Binary classification, request linear separability 
+- $\hat{y}=sign(wx+\sigma)$ 
