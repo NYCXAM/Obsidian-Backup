@@ -333,11 +333,42 @@ Tokenize the input string -> Convert words into vector by their meaning (the clo
 
 
 **Embedding Space:**
-You feed different sentences that missing one word into a neural network, and let it predict what word go into the blank (I like ~~cats~~ because they are cute), and neural network will notice all words go in this blank are related to cute. If you do this with a rich training set then it will end up with a embedding space that encode the similarity between different words
+You feed different sentences that missing one word into a neural network, and let it predict what word go into the blank (I like ___ because they are cute), and neural network will notice all words go in this blank are related to cute. If you do this with a rich training set then it will end up with a embedding space that encode the similarity between different words
 
 
 ## Lecture 12/04 Graph/Reviews
 
 **Perceptron:**
 - Purpose: Binary classification, request linear separability 
-- $\hat{y}=sign(wx+\sigma)$ 
+- $\hat{y}=sign(wx+\sigma)$, and $w=w+\alpha xy$
+- Example: why binary classification only, not three or more classes?
+  Because you can't represent more than two classes with only two signs (+ & -)
+**Logistic Regression:**
+
+**Multilayer Perceptron:**
+	Activation: say $p_n$ is the $n^{th}$ pervious perceptron, $w_n$ is the $n^{th}$ weight, do $\sum_{i=0}^{n} p_n * w_n$ to get the activation of current perceptron
+
+Activation Functions:
+- Sigmoid:
+  
+- ReLU:
+
+![[Pasted image 20251204144047.png]]
+**Softmax:**
+
+- Difference between normalize: softmax works great on negative values, and 
+**Batch:**
+
+**Convolutional Neural Network:**
+Classifying images, different 
+
+**Word Embeddings:**
+- Why do we use them and what they do: 
+- 1. Skip-gram: We remove a word in one sentence, and let the network guess what word it should be, to learn the relationship between different words
+- 2. CBOW (Continue Bag of Words): 
+
+**Transformers:**
+Know about RLHF, System Prompts
+
+**Graphs:**
+All the stuff for the reading
