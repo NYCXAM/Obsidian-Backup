@@ -317,7 +317,7 @@ Generally use it only for small degree polynomials
 
 **Convolutional Neural Network:**
 Light weight model for image classification,
-- Object classification: Classify what object is in the image
+	- Object classification: Classify what object is in the image
 - Object localization: Classification + the location of that object in image
 - Semantic segmentation: Label all pixels
 
