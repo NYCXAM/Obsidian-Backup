@@ -339,36 +339,130 @@ You feed different sentences that missing one word into a neural network, and le
 ## Lecture 12/04 Graph/Reviews
 
 **Perceptron:**
-- Purpose: Binary classification, request linear separability 
-- $\hat{y}=sign(wx+\sigma)$, and $w=w+\alpha xy$
+- Definition: it is a linear binary classifier 
 - Example: why binary classification only, not three or more classes?
   Because you can't represent more than two classes with only two signs (+ & -)
+- $$f(\mathbf{x}) = \begin{cases} 1 & \text{if } \mathbf{w} \cdot \mathbf{x} + b > 0 \\ 0 \text{ (or -1)} & \text{otherwise} \end{cases}$$
+- Given input vector $x$, weight vector $w$, and bias $b$
+  $w*x$: Dot product of weights and inputs
 **Logistic Regression:**
+- Definition: it is a linear classifier that predicts probabilities, output continuous value from 0 to 1 indicating the likelihood. This is done by passing the linear weighted sum through the sigmoid function.
+  $\hat{y} = \sigma(w*x+b)$
+- Difference with perceptron: Perceptron only updates weight when it makes a mistake, where logistic regression updates weights by gradient descent.
 
 **Multilayer Perceptron:**
-	Activation: say $p_n$ is the $n^{th}$ pervious perceptron, $w_n$ is the $n^{th}$ weight, do $\sum_{i=0}^{n} p_n * w_n$ to get the activation of current perceptron
+- Definition: it is a neural network with at least one hidden layer between the input and output. 
+- Forward pass: two steps:
+	- Calculate weighted sum with $z=(\sum x_i*w_i)+b$.  
+	  $x_i$: input from previous layer, $w_i$: Weight on the connection, $b$: Bias of the current neuron. 
+	- Apply Activation: Pass the weighted sum through the activation function (Sigmoid or ReLU)
 
-Activation Functions:
+**Activation Functions:**
 - Sigmoid:
-  
+	  An S-shaped activation function 
+	  $\sigma(z)=\frac{1}{1+e^{-z}}$
 - ReLU:
+	  Piecewise function that outputs the original input if it is positive, otherwise output 0
+	  $f(z) = max(0,z)$
 
 ![[Pasted image 20251204144047.png]]
 **Softmax:**
-
+- It solves multi-class classification, where you can have multiple outputs, and you want to convert the raw output scores (logits, can be neg or pos or large) into a normalized probability distribution.
 - Difference between normalize: softmax works great on negative values, and 
+- ==Formula (memorize)==
+  $P(y=i)=\frac{e^{z_i}}{\sum_{j=1}^{K}e^{z_j}}$
+  For a vector of **K** raw scores (logits) $z$, this formula give value for the $i$-th class.
+  Numerator ($e^{z_i}$): Exponentiates the individual score (makes everything positive)
+  Denominator ($\sum e^{z_j}$): The sum of all exponentiated scores (normalizes the result)
+- Properties:
+  1. Sum of all outputs add up to 1, each output range from 0 to 1
+  2. "Soft" Max: It highlights the largest value but doesn't completely zero out the others 
+  3. Amplification: Because of the exponential, even small differences in the raw score result in large differences in probability.
+
 **Batch:**
 
 **Convolutional Neural Network:**
-Classifying images, different 
+- Description: A deep learning method to use convolutional layers to scan through input images to find local features. CNN is able to learn complex patterns by combining local fields, weight sharing, and polling.
+- **Convolutional Layers:**
+	- Parameters:
+	  **Stride**: How much overlap between different layers, Smaller value means higher overlap, capture more details but is more expensive and slow; Higher values means smaller overlap, more cheap and fast but can miss details.
+	  **Zero Padding (adding border of 0s to the image):** It allow the center of layer to reach the very edge pixels of the input, and make sure every layer has the same size.
+	  **Batch (Training parameter):** Controls how many samples are processed before the model updates its weights
+	  **Local Receptive Field (Filter size):** Controls how many pixles each neuron in a layer "looks at" at once.
+- **Pooling Layers:**
+	- **Description**: A "downsampling" operation used to reduce the spatial dimensions of the feature map while keeping the depth intact. Usually done by max pooling (takes the maximum value in a window)
+	- **Purpose**:
+	  1. Reduce computation: fewer pixels to process in later layers
+	  2. Translation Invariance: makes the network robust to small shifts. If a feature move slightly, the max value in the windows remain the same.
+- **Fully Connected Layers:**
+	- **Description**: These appear at the very end of the CNN. They take the high-level features learned by the conv layers (3D volumes) and flatten them into a 1D vector. 
+	- **Latent Space:** This flattened vector represents the latent space. It is a compressed, abstract representation of the input image where "meaning" is stored (e.g. a specific combination of numbers in this vector represents "cat-like" features)
+	- **Purpose:** Conv Layers are feature extractors, they don't make decisions. The FC layers act as the classifier. They look at the latenet space representation and combine those features to predict the final class. 
+- **Auto Encoders:**
+	- **Purpose:** Unsupervised learning used for dimensionality reduction, denoising, or compression.
+	- **How they work:** 
+	  1. Encoder: Compress the input down into a small latent space.
+	  2. Decoder: Attempts to reconstruct the original input purely from that compressed latent representation.
 
 **Word Embeddings:**
-- Why do we use them and what they do: 
-- 1. Skip-gram: We remove a word in one sentence, and let the network guess what word it should be, to learn the relationship between different words
-- 2. CBOW (Continue Bag of Words): 
+- **Description**: A technique that map words to vectors of real numbers. Instead of a sparse "one-hot encoding" (which is huge and has no meaning), an embedding is a dense vector where similar words have similar values (or in similar location)
+- **Why do we use them and what they do**: 
+	  1. Semantic meaning: it captures relationships between words. e.g. King and Queen will be closer than King and Apple.
+	  2. Dimensionality Reduction: Compresses a large vocabulary into a manageable vectors for the model to process efficiently.
+- **Methods of training:**
+	- 1. Skip-gram: Predicts the context words based on the target word. e.g. Input "sat" $\to$ Predict ["The", "cat", "on", "mat"]. _Note:_ Skip-gram generally works better for infrequent words.
+	- 2. CBOW (Continue Bag of Words): Predicts the target words based on the context (surrounding words). e.g. Input ["The", "cat", "on", "mat"] $\to$ Predict "sat".
+- **Cosine Similarity**: We measure similarity by the angle between two vectors, not the Euclidean distance. 
 
 **Transformers:**
+- Overview: Transformer discards Recurrent Neural Networks entirely and relies on the Attention Mechanism. It processes the entire sequence of input data simultaneously (parallelization), rather than word-by-word (sequential).
+- **Attention:**
+	- **Why we need it:** RNNs struggle with long-range dependencies. If a sentence is very long, the network forgets the beginning by the time it reaches the end.
+	- Attention allows the model to "look at" every other word in the sentence at the same time and decide which one are relevant to the current word being processed. 
+- **RLHF** (Reinforcement Learning from Human Feedback):
+	- **How/Why**: used to align the model with human intent (helpfulness, safety) after initial pre-tranning.
+		1. Humans rank model outputs.
+		2. Train a "Reward Model" to predict these ranking.
+		3. Use RL to update the LLM to maximize the score form the Reward Model
+	- **Sycophancy:** The model agrees with the user's wrong beliefs just to please them to get higher score.
+- **System Prompt:**
+	- Purpose: The "hidden" instruction given to the model before the user conversation starts. It defines the models' persona, boundaries, and rules. 
+- **Interpretability Theory**:
+	- ==Monosemanticity==: The ideal state where one neuron corresponds to exactly one concept. (e.g. a "husky" neuron that only activate for that dog)
+	- ==Superposition==: The reality where neural networks store more concepts than they have neurons. They compress multiple unrelated concepts into a single neuron (using different linear combinations), making interpretability difficult because one neuron fires for "husky" and "ancient Roman houses".
+- **MLPs as Fact Storage:**
+	  In a transformer, the attention layers handle the grammar and relationships between words.
+	  The Multi-Layer Perceptron (MLP) blocks are theorized to act as Key-Value Memories where facts are stored.
+	  Input: "Capital of France" -> MLP Lookup -> Output: "Paris"
 Know about RLHF, System Prompts
 
 **Graphs:**
-All the stuff for the reading
+- **Link Prediction as Supervised Learning:** 
+	- Definition: Predicting whether an edge (link) exists between two specific nodes that are currently unconnected (e.g. Should Facebook suggest this person as a friend)
+	  To turn this into a classification problem, we treat pairs of nodes as our data points.
+	  1. Data Creation:
+	     - Positive Examples ($y=1$): Existing edges in the graph. (You might hide some edges during training to test if the model can "rediscover" them)
+	     - Negative Examples ($y=0$): Pairs of nodes that do not have an edge between them (usually generated by random sampling, as non-edges are majority)
+	  2. Feature Engineering:
+	     - For every pair of nodes ($u,v$), we extract features (e.g. number of common neighbors, Jaccard coefficient, or distance between embeddings) 
+	  3. Training:
+	     - Train a standard classifier (like Logistic Regression or Random Forest on these pairs to predict the binary label (Edge/No Edge)
+	     
+- **Node Embeddings:**
+	- Definition: Mapping each node in a graph to a low-dimensional vector (similar to word embedding)
+	- Goal: To encode the structure of the graph into the vector space so that "similar" nodes are close together in that space
+	- How They are generated:
+		  1. Random Walks:
+		     - The algorithm perfomrs random walks starting from a node to generate sequences of nodes (similar to sentences in NLP)
+		     - It then uses Skip-gram to learn embedding  where nodes that appear often in the same walk are considered similar
+		  2. Graph Neural Netowrk:
+			  - Iteratively aggregate information from a node's neightbors to update its vector representation
+
+- Structural Equivalence vs. Network Homophily:
+
+|**Feature**|**Network Homophily**|**Structural Equivalence**|
+|---|---|---|
+|**Core Concept**|"Birds of a feather flock together."|"Similar roles in different places."|
+|**Definition**|Nodes are similar if they are **connected** to each other or share the same neighbors.|Nodes are similar if they have the **same network topology** (local structure) around them, regardless of distance.|
+|**Example**|Two students in the same study group who are friends. They are close in the graph.|The **CEO** of Amazon and the **CEO** of Google. They may not know each other (no edge), but they look the same mathematically (both connected to many distinct clusters of employees).|
+|**Embedding Goal**|Embeddings should be close if nodes are **neighbors**.|Embeddings should be close if nodes perform the **same function** (e.g., hubs, bridges).|
