@@ -342,7 +342,7 @@ You feed different sentences that missing one word into a neural network, and le
 - Definition: it is a linear binary classifier 
 - Example: why binary classification only, not three or more classes?
   Because you can't represent more than two classes with only two signs (+ & -)
-- $$f(\mathbf{x}) = \begin{cases} 1 & \text{if } \mathbf{w} \cdot \mathbf{x} + b > 0 \\ 0 \text{ (or -1)} & \text{otherwise} \end{cases}$$
+$$f(\mathbf{x}) = \begin{cases} 1 & \text{if } \mathbf{w} \cdot \mathbf{x} + b > 0 \\ 0 \text{ (or -1)} & \text{otherwise} \end{cases}$$
 - Given input vector $x$, weight vector $w$, and bias $b$
   $w*x$: Dot product of weights and inputs
 **Logistic Regression:**
