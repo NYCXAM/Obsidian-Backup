@@ -342,7 +342,7 @@ You feed different sentences that missing one word into a neural network, and le
 - Definition: it is a linear binary classifier 
 - Example: why binary classification only, not three or more classes?
   Because you can't represent more than two classes with only two signs (+ & -)
-$$f(\mathbf{x}) = \begin{cases} 1 & \text{if } \mathbf{w} \cdot \mathbf{x} + b > 0 \\ 0 \text{ (or -1)} & \text{otherwise} \end{cases}$$
+- $$f(\mathbf{x}) = \begin{cases} 1 & \text{if } \mathbf{w} \cdot \mathbf{x} + b > 0 \\ 0 \text{ (or -1)} & \text{otherwise} \end{cases}$$
 - Given input vector $x$, weight vector $w$, and bias $b$
   $w*x$: Dot product of weights and inputs
 **Logistic Regression:**
@@ -453,10 +453,10 @@ Know about RLHF, System Prompts
 	- Goal: To encode the structure of the graph into the vector space so that "similar" nodes are close together in that space
 	- How They are generated:
 		  1. Random Walks:
-		     - The algorithm perfomrs random walks starting from a node to generate sequences of nodes (similar to sentences in NLP)
+		     - The algorithm performs random walks starting from a node to generate sequences of nodes (similar to sentences in NLP)
 		     - It then uses Skip-gram to learn embedding  where nodes that appear often in the same walk are considered similar
-		  2. Graph Neural Netowrk:
-			  - Iteratively aggregate information from a node's neightbors to update its vector representation
+		  2. Graph Neural Network:
+			  - Iteratively aggregate information from a node's neighbors to update its vector representation
 
 - Structural Equivalence vs. Network Homophily:
 
