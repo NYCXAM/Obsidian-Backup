@@ -16,4 +16,24 @@ feature = vectors = observations
 3. While (T > 0):
 	1. Get a random "neighbor"
 	2. If neighbor better than solution: accept as new solution
-	3. Else, accept with probability: $$
+	3. Else, accept with probability: $\exp(-\frac{E-E_i}{T_i})$
+	4. $T = T* \alpha$
+
+**Genetic Algorithm:**
+1. Make a random initial population
+2. Apply population fitness function
+3. While generations < num_generations
+	1. For ($\frac{population\_size}{2}$):
+		- Choose 2 parents according to population fitness function
+		- Generate children
+		- Mutate
+	2. Add the new routes to the population
+	3. Choose the best routes to stay in the population (maintaining population size)
+	4. Update fitness function
+4. Return the best solution from the population
+![[Pasted image 20260217130159.png]]
+Population fitness function:
+- For each solution in the population:
+	- Fitness = maximum cost - solution cost
+	- Fitness probability = solution cost / $\sum$ population fitness
+- Select parents according to their fitness probabilities
