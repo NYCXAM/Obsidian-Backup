@@ -39,3 +39,5 @@ Population fitness function:
 - Select parents according to their fitness probabilities
 
 ## Exam 1 Review:
+**Complete:** An algorithm is complete if it is guaranteed to find a solution whenever at least one exists, and correctly reports failure when no solution exists.
+**Finite search graphs:** A state space consisting of a limited, finite number of distinct nodes and transitions.
