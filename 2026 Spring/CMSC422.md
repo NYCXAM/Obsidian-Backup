@@ -37,3 +37,5 @@ Population fitness function:
 	- Fitness = maximum cost - solution cost
 	- Fitness probability = solution cost / $\sum$ population fitness
 - Select parents according to their fitness probabilities
+
+## Exam 1 Review:
