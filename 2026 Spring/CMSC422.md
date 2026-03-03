@@ -1,3 +1,22 @@
+## KNN
+**Two approaches for learning:**
+1. Eager learning (e.g. decision tree)
+   - Induce an abstract model from data
+   - Apply learned model to new data
+2. Lazy learning (e.g. KNN)
+   - Just store the data in memory
+   - Compare new data to stored data
+
+**Components of a KNN classifier:**
+- Distance metric:
+	- How do we measure the distance between instances?
+	- Determines the layout of the example space (e.g. L1 is manhattan distance, l2 is euclidean distance)
+	
+- The k hyperparameter:
+	- How large a neighborhood should we consider?
+	- Determines the complexity of the hypothesis space
+
+
 ## Lecture 1 2/3
 Wording:
 label = target
