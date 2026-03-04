@@ -365,7 +365,7 @@ You feed different sentences that missing one word into a neural network, and le
 	  Piecewise function that outputs the original input if it is positive, otherwise output 0
 	  $f(z) = max(0,z)$
 
-![[Pasted image 20251204144047.png]]
+![[Pasted image 20251204144047 1.png]]
 **Softmax:**
 - It solves multi-class classification, where you can have multiple outputs, and you want to convert the raw output scores (logits, can be neg or pos or large) into a normalized probability distribution.
 - Difference between normalize: softmax works great on negative values, and 
