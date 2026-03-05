@@ -36,6 +36,19 @@ Output
 	- We will use a heuristic search algo which:
 		- Picks questions to ask, in order
 		- Such that classification accuracy is maximized
+
+**Entropy:**
+Entropy $H(X)$ of a random variable $X$, where $H(X)$ is the expected number of bits needed to encode a randomly drawn value of $X$ (under most efficient code)
+$H(X) = -sum_{i=1}^{n}P(X=i)\log_2P(X=i)$
+
+**Conditional Entropy:**
+Conditional Entropy $H(Y|X)$ of a random variable $Y$ conditioned on a random variable $X$
+$H(Y|X) = -\sum_{j=1}^{v}P(X=x_j)\sum_{i=1}^{k}P(Y=y_j|X=x_j)\log_2P(Y=y_i|X=x_j)$
+![[Pasted image 20260304203343.png]]
+
+**Information Gain:**
+Decrease in entropy (uncertainty) after splitting, $IG(X)=H(Y)-H(Y|X)$
+
 ## KNN
 **Two approaches to learning:**
 - Eager learning:
@@ -54,8 +67,6 @@ Output
 **Epsilon Ball NN:**
 - Same general idea as KNN, but change the method for selecting which training examples vote
 - Instead of using K nearest neighbors, we use all examples x such that $dist(\hat{x},x)\le \epsilon$
-$$
-$$
+
 ## Perceptron
-$$
-$$
+
