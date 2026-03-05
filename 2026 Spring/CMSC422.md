@@ -54,4 +54,8 @@ Output
 **Epsilon Ball NN:**
 - Same general idea as KNN, but change the method for selecting which training examples vote
 - Instead of using K nearest neighbors, we use all examples x such that $dist(\hat{x},x)\le \epsilon$
+$$
+$$
 ## Perceptron
+$$
+$$
