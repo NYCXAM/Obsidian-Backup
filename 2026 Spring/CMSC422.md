@@ -85,7 +85,9 @@ Given:
 	2. Return average $\frac{1}{B}\sum_{j=\{1,\dots,B\}}y_j$ for regression, or majority vote for classification
 ## KNN
 D: Training Data, 
-![[Pasted image 20260308193745.png]]
+K: # of neighbors that classification is based on, 
+$\hat{x}$: Test instance with unknown class in {-1; +1}
+![[Pasted image 20260308194308.png]]
 **Two approaches to learning:**
 - Eager learning:
 	- Induce an abstract model from data
