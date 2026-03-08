@@ -73,6 +73,16 @@ Bootstrapping is to make an inference about an estimate of statistic
 Given:
 - Observations $x_1,\dots,x_n$ and estimates $y=\frac{1}{n}\sum_{i=1}^nx_i$
 - What can we say about the standard error of y? $S.E. = \frac{\sigma}{\sqrt{n}}$
+
+**Bagging:** **B**ootstrap **ag**gregation
+- Resampling a training set of size $n$ via the bootstrap:
+	- Sample with replacement $n$ elements
+- General scheme for random forests:
+	1. Create B bootstrap samples, $\{Z_{1},Z_{2},\dots,Z_B\}$
+	2. Build B decision trees, $\{T_{1},T_{2},\dots,T_B\}$, from $\{Z_{1},Z_{2},\dots,Z_B\}$
+- Classification/Regression:
+	1. Each tree $T_j$ predicts class/value $y_j$
+	2. Return average $\frac{1}{B}\sum_{j=\{1,\dots,B\}}y_j$
 ## KNN
 **Two approaches to learning:**
 - Eager learning:
