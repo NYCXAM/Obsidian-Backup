@@ -50,7 +50,7 @@ $H(Y|X) = -\sum_{j=1}^{v}P(X=x_j)\sum_{i=1}^{k}P(Y=y_j|X=x_j)\log_2P(Y=y_i|X=x_j
 Decrease in entropy (uncertainty) after splitting, $IG(X)=H(Y)-H(Y|X)$
 
 **Inductive bias:**
-Decision tree algos typically prefer certain types of trees over others, such as shorter trees or trees with high information gain. It prefer a shorter 
+Decision tree algos typically prefer certain types of trees over others, such as shorter trees or trees with high information gain. It prefer a shorter tree because a short hypothesis that fits the data is less likely to be a statistical coincidence
 
 
 ## KNN
