@@ -52,7 +52,21 @@ Decrease in entropy (uncertainty) after splitting, $IG(X)=H(Y)-H(Y|X)$
 **Inductive bias:**
 Decision tree algos typically prefer certain types of trees over others, such as shorter trees or trees with high information gain. It prefer a shorter tree because a short hypothesis that fits the data is less likely to be a statistical coincidence
 
+**Overfitting:**
+- Consider a hypothesis $h$ and its:
+	- Error rate over training data $error_{train}(h)$
+	- True error rate over all data $error_{true}(h)$
+- We say $h$ overfits the training data if 
+  $error_{train}(h) < error_{true}(h)$
+- Amount of overfitting = 
+  $error_{true}(h) - error_{train}(h)$
 
+**Evaluating on test data:**
+- Problem: we don't know $error_{true}(h)$
+- Solution:
+	- We set aside a test set (some examples that will be used for evaluation)
+	- We don't look at them during training
+	- After learning a decision tree, we calculate $error_{test}(h)$
 ## KNN
 **Two approaches to learning:**
 - Eager learning:
