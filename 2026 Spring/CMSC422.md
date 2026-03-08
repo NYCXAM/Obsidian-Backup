@@ -67,6 +67,11 @@ Decision tree algos typically prefer certain types of trees over others, such as
 	- We set aside a test set (some examples that will be used for evaluation)
 	- We don't look at them during training
 	- After learning a decision tree, we calculate $error_{test}(h)$
+
+**Bootstrapping:**
+Bootstrapping is to make an inference about an estimate of statistic
+Given:
+- Observations $x_1,\dots,x_n$ and estimates $y=\frac{1}{n}\sum_{i=1}^nx_$
 ## KNN
 **Two approaches to learning:**
 - Eager learning:
