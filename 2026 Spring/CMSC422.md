@@ -82,8 +82,10 @@ Given:
 	2. Build B decision trees, $\{T_{1},T_{2},\dots,T_B\}$, from $\{Z_{1},Z_{2},\dots,Z_B\}$
 - Classification/Regression:
 	1. Each tree $T_j$ predicts class/value $y_j$
-	2. Return average $\frac{1}{B}\sum_{j=\{1,\dots,B\}}y_j$
+	2. Return average $\frac{1}{B}\sum_{j=\{1,\dots,B\}}y_j$ for regression, or majority vote for classification
 ## KNN
+D: Training Data, 
+![[Pasted image 20260308193745.png]]
 **Two approaches to learning:**
 - Eager learning:
 	- Induce an abstract model from data
