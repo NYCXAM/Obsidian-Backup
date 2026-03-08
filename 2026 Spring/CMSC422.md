@@ -71,7 +71,8 @@ Decision tree algos typically prefer certain types of trees over others, such as
 **Bootstrapping:**
 Bootstrapping is to make an inference about an estimate of statistic
 Given:
-- Observations $x_1,\dots,x_n$ and estimates $y=\frac{1}{n}\sum_{i=1}^nx_$
+- Observations $x_1,\dots,x_n$ and estimates $y=\frac{1}{n}\sum_{i=1}^nx_i$
+- What can we say about the standard error of y? $S.E. = \frac{\sigma}{\sqrt{n}}$
 ## KNN
 **Two approaches to learning:**
 - Eager learning:
