@@ -51,6 +51,8 @@ Decrease in entropy (uncertainty) after splitting, $IG(X)=H(Y)-H(Y|X)$
 
 **Inductive bias:**
 Decision tree algos typically prefer certain types of trees over others, such as shorter trees or trees with high information gain 
+
+
 ## KNN
 **Two approaches to learning:**
 - Eager learning:
