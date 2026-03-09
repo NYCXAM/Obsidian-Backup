@@ -143,7 +143,22 @@ Output:
 - Simple modifications dramatically improve performance: Voting or averaging
 
 **Advanced Perceptron:**
-- The voted perceptron$$\hat{y}=sign(\sum_{k=1}^{K}c^{(k)}sign(\omega^{(k)}\cdot \hat{x}+b^{(k)}))$$
-- The averaged perceptron$$\hat{y}=sign(\sum_{k=1}^{K}c^{(k)}(\omega^{(k)}\cdot \hat{x}+b^{(k)}))$$
-- Require keeping track of "survival time" of weight vectors
+1. The voted perceptron: acts like a committee of different models.
+	- The logic: Every weight vector created during training $(\omega^{(1)},\dots,\omega^{(K)}$ gets to vote on the final classification
+	- The weighting: The vote of each weight vector is multiplied by its survival time $c^{(k)}$
+$$\hat{y}=sign(\sum_{k=1}^{K}c^{(k)}sign(\omega^{(k)}\cdot \hat{x}+b^{(k)}))$$
+2. The averaged perceptron: more computationally efficient than voted perceptron
+	- The logic: Instead of taking a sign(vote) for every intermediate weight, it calculates a weighted average of all the weight vectors first, and then makes one single prediction
+$$\hat{y}=sign(\sum_{k=1}^{K}c^{(k)}(\omega^{(k)}\cdot \hat{x}+b^{(k)}))$$
+- Require keeping track of "survival time" of weight vectors $c^{(1)},\dots,c^{(K)}$. Survival time counts how many training examples a specific weight vector $\Omega^{(k)}$ correctly classified before it made a mistake and had to be changed
 
+**Convergence of Perceptron:**
+- The perceptron has converged if it can classify every training example correctly
+- If the training data $D=\{(x_{1},y_{1}),\dots,(x_N, y_N)\}$ is **linearly separable** with margin $\gamma$ by a unit norm hyperplane $\omega_*(||\omega_*||=1)$ with $b=0$, Then **perceptron training converges after $\frac{R^2}{\gamma^2}$ errors** during training (assuming $(||x||<R)$ for all $x$)
+
+**Margin of a dataset $D$**
+![[Pasted image 20260309020659.png]]
+
+**Perctical Implications:**
+- Sensitivity to noise:
+	- If the data is not linearly separable due to noise, no guarantee of convergence o
