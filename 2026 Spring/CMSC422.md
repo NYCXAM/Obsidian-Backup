@@ -118,4 +118,17 @@ $\hat{x}$: Test instance with unknown class in {-1; +1}
 2. Then, training consists in finding a hyperplane $\omega$ that separates positive from negative examples
 3. At test time, we check on what side of the hyperplane examples fall $\hat{y}=sign(\omega^Tx+b)$
 
+**Function Approximation with Perceptron:**
+Problem setting:
+- Set of possible instances $X$
+	- each instance $x \in X$ is a feature vector $x=[x_{1},\dots,x_D]$
+- Unknown target function $f: X\to Y$
+	- $Y$ is binary valued $\{-1;+1\}$
+- Set of function hypotheses $H=\{h|h:X\to Y\}$
+	- Each hypothesis $h$ is a hyperplane in D-dimensional space
+Input:
+- Training examples $\{(x^{(1)},y^{(1)}),\dots,(x^{(N)},y^{(N)})\}$ of unknown target function $f$
+Output:
+- Hypothesis $h \in H$ that best approximates target function $f$
+
 
