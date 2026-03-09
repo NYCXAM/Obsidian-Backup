@@ -108,5 +108,5 @@ $\hat{x}$: Test instance with unknown class in {-1; +1}
 
 ## Perceptron
 **Hyperplane:** A cut that separates a $D$-dimensional space into two spaces. (e.g. in a 2D space, it is a line, in 3D space it is a plane.)
-In D-dimensions space, it is a $(D-1)$ dimensional hyperplane
+- In D-dimensions space, it is a $(D-1)$ dimensional hyperplane
 
