@@ -159,6 +159,12 @@ $$\hat{y}=sign(\sum_{k=1}^{K}c^{(k)}(\omega^{(k)}\cdot \hat{x}+b^{(k)}))$$
 **Margin of a dataset $D$**
 ![[Pasted image 20260309020659.png]]
 
-**Perctical Implications:**
+**Practical Implications:**
 - Sensitivity to noise:
-	- If the data is not linearly separable due to noise, no guarantee of convergence o
+	- If the data is not linearly separable due to noise, no guarantee of convergence or accuracy
+- Linear separability in practice
+	- Data may be linearly separable in practice
+	- Especially when # features >> # examples
+- Risk of overfitting mitigated by
+	- Early stopping
+	- Averaging
