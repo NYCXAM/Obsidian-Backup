@@ -188,3 +188,4 @@ $$\min_{w,b} \sum_{n} \mathbb{I}[y_n(w \cdot x_n + b) < 0]$$
 	- Regularizer $R(w,b)$: This term punishes overly complex solutions. It expresses a preference for models that are simpler (e.g. have smaller weights), which are statistically more likely to generalize well to unseen data
 	- Hyperparameter $\lambda$: This controls the trade-off. A high $\lambda$ prioritizes simplicity (preventing overfitting), while a low $\lambda$ prioritizes training accuracy.
 $$\min_{w,b} L(\mathbf{w}, b) = \min_{w,b} \sum_{n=1}^{N} \mathbb{I}(y_n(w^T x_n + b) < 0) + \lambda R(\mathbf{w}, b)$$
+	- Where $R^{cnt}(w,b)=\sum_{d=1}^D\mathbb{I}(w_d\neq_{0})$
