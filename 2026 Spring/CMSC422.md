@@ -110,13 +110,13 @@ $\hat{x}$: Test instance with unknown class in {-1; +1}
 **Hyperplane:** 
 - Def: A cut that separates a $D$-dimensional space into two spaces. (e.g. in a 2D space, it is a line, in 3D space it is a plane.)
 - In D-dimensions space, it is a $(D-1)$ dimensional hyperplane
-- Defined by an outward pointing normal vector $\omega\in \mathbb{R}^D$, where $\omega$ is **orthogonal** to any vector lying on the hyperplane
+- Defined by an outward pointing normal vector $w\in \mathbb{R}^D$, where $w$ is **orthogonal** to any vector lying on the hyperplane
 - Hyperplane passes through the origin, unless we also define a $bias$ term b
 
 **Binary classification via hyperplanes:**
 1. Let's assume that the decision boundary is a hyperplane
-2. Then, training consists in finding a hyperplane $\omega$ that separates positive from negative examples
-3. At test time, we check on what side of the hyperplane examples fall $\hat{y}=sign(\omega^Tx+b)$
+2. Then, training consists in finding a hyperplane $w$ that separates positive from negative examples
+3. At test time, we check on what side of the hyperplane examples fall $\hat{y}=sign(w^Tx+b)$
 
 **Function Approximation with Perceptron:**
 Problem setting:
@@ -144,17 +144,17 @@ Output:
 
 **Advanced Perceptron:**
 1. The voted perceptron: acts like a committee of different models.
-	- The logic: Every weight vector created during training $(\omega^{(1)},\dots,\omega^{(K)}$ gets to vote on the final classification
+	- The logic: Every weight vector created during training $(w^{(1)},\dots,w^{(K)}$ gets to vote on the final classification
 	- The weighting: The vote of each weight vector is multiplied by its survival time $c^{(k)}$
-$$\hat{y}=sign(\sum_{k=1}^{K}c^{(k)}sign(\omega^{(k)}\cdot \hat{x}+b^{(k)}))$$
+$$\hat{y}=sign(\sum_{k=1}^{K}c^{(k)}sign(w^{(k)}\cdot \hat{x}+b^{(k)}))$$
 2. The averaged perceptron: more computationally efficient than voted perceptron
 	- The logic: Instead of taking a sign(vote) for every intermediate weight, it calculates a weighted average of all the weight vectors first, and then makes one single prediction
-$$\hat{y}=sign(\sum_{k=1}^{K}c^{(k)}(\omega^{(k)}\cdot \hat{x}+b^{(k)}))$$
+$$\hat{y}=sign(\sum_{k=1}^{K}c^{(k)}(w^{(k)}\cdot \hat{x}+b^{(k)}))$$
 - Require keeping track of "survival time" of weight vectors $c^{(1)},\dots,c^{(K)}$. Survival time counts how many training examples a specific weight vector $\Omega^{(k)}$ correctly classified before it made a mistake and had to be changed
 
 **Convergence of Perceptron:**
 - The perceptron has converged if it can classify every training example correctly
-- If the training data $D=\{(x_{1},y_{1}),\dots,(x_N, y_N)\}$ is **linearly separable** with margin $\gamma$ by a unit norm hyperplane $\omega_*(||\omega_*||=1)$ with $b=0$, Then **perceptron training converges after $\frac{R^2}{\gamma^2}$ errors** during training (assuming $(||x||<R)$ for all $x$)
+- If the training data $D=\{(x_{1},y_{1}),\dots,(x_N, y_N)\}$ is **linearly separable** with margin $\gamma$ by a unit norm hyperplane $w_*(||w_*||=1)$ with $b=0$, Then **perceptron training converges after $\frac{R^2}{\gamma^2}$ errors** during training (assuming $(||x||<R)$ for all $x$)
 
 **Margin of a dataset $D$**
 ![[Pasted image 20260309020659.png]]
@@ -185,5 +185,6 @@ $$\hat{y}=sign(\sum_{k=1}^{K}c^{(k)}(\omega^{(k)}\cdot \hat{x}+b^{(k)}))$$
 $$\min_{w,b} \sum_{n} \mathbb{I}[y_n(w \cdot x_n + b) < 0]$$
 2. Loss function with regularization
 	- Still measure how well the classifier fits the training data, but adds a second component to optimization problem
-	- Regularizer $R(\omega,b)$
+	- Regularizer $R(w,b)$: This term punishes overly complex solutions. It expresses a preference for models that are simpler (e.g. have smaller weights), which are statistically more likely to generalize well to unseen data
+	- Hyperparameter $\lambda$: This controls the trade-off. A high $\lambda$ prioritizes simplicity (preventing overfitting), while a low $\lambda$ prioritizes training accuracy.
 $$\min_{w,b} L(\mathbf{w}, b) = \min_{w,b} \sum_{n=1}^{N} \mathbb{I}(y_n(w^T x_n + b) < 0) + \lambda R(\mathbf{w}, b)$$
