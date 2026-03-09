@@ -107,4 +107,4 @@ $\hat{x}$: Test instance with unknown class in {-1; +1}
 - Instead of using K nearest neighbors, we use all examples x such that $dist(\hat{x},x)\le \epsilon$
 
 ## Perceptron
-
+**Hyperplane:** A 
