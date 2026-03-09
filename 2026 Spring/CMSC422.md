@@ -201,3 +201,10 @@ $$\min_{w,b} L(\mathbf{w}, b) = \min_{w,b} \sum_{n=1}^{N} \mathbb{I}(y_n(w^T x_n
 	- When performance on held-out dev set plateaus
 - How to choose the step size?
 	- Start with large steps, then take smaller steps
+
+**Example for Gradient Calculation:**
+1. Derivative with respect to $b$
+$$\begin{aligned} \frac{\partial \mathcal{L}}{\partial b} &= \frac{\partial}{\partial b} \sum_{n} \exp \left[ -y_n(w \cdot x_n + b) \right] + \frac{\partial}{\partial b} \frac{\lambda}{2} \|w\|^2 & (6.12) \\ &= \sum_{n} \frac{\partial}{\partial b} \exp \left[ -y_n(w \cdot x_n + b) \right] + 0 & (6.13) \\ &= \sum_{n} \left( \frac{\partial}{\partial b} -y_n(w \cdot x_n + b) \right) \exp \left[ -y_n(w \cdot x_n + b) \right] & (6.14) \\ &= -\sum_{n} y_n \exp \left[ -y_n(w \cdot x_n + b) \right] & (6.15) \end{aligned}$$
+
+2. Gradient with respect to $w$
+$$\begin{aligned} \nabla_w \mathcal{L} &= \nabla_w \sum_{n} \exp \left[ -y_n(w \cdot x_n + b) \right] + \nabla_w \frac{\lambda}{2} \|w\|^2 & (6.16) \\ &= \sum_{n} \left( \nabla_w -y_n(w \cdot x_n + b) \right) \exp \left[ -y_n(w \cdot x_n + b) \right] + \lambda w & (6.17) \\ &= -\sum_{n} y_n x_n \exp \left[ -y_n(w \cdot x_n + b) \right] + \lambda w & (6.18) \end{aligned}$$
