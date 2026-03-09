@@ -176,3 +176,14 @@ $$\hat{y}=sign(\sum_{k=1}^{K}c^{(k)}(\omega^{(k)}\cdot \hat{x}+b^{(k)}))$$
 	1. An input space $X$
 	2. An unknown distribution $D$ over $X\times\{-1,1\}$
 - Compute: A function $f$ minimizing: $\mathbb{E}_{(x,y)\textasciitilde D}[f(x)\neq y]$
+
+**Equations:**
+1. Simple loss function
+	- Defines learning as a pure minimization of training errors
+	- 0-1 Loss: It uses an Indicator function $\mathbb{I}(\cdot)$, which simply counts mistakes. It returns 1 if the point is misclassified (where the sign of the prediction doesn't match the label $y_n$ and 0 if it is correct
+	- Goal: This objective only cares about fitting the training data as perfectly as possible.
+$$\min_{w,b} \sum_{n} \mathbb{I}[y_n(w \cdot x_n + b) < 0]$$
+2. Loss function with regularization
+	- Still measure how well the classifier fits the training data, but adds a second component to optimization problem
+	- Regularizer $R(\omega,b)$
+$$\min_{w,b} L(\mathbf{w}, b) = \min_{w,b} \sum_{n=1}^{N} \mathbb{I}(y_n(w^T x_n + b) < 0) + \lambda R(\mathbf{w}, b)$$
