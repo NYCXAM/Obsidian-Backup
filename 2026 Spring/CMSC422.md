@@ -142,3 +142,8 @@ Output:
 - Early stopping: Good strategy to avoid overfitting
 - Simple modifications dramatically improve performance: Voting or averaging
 
+**Advanced Perceptron:**
+- The voted perceptron$$\hat{y}=sign(\sum_{k=1}^{K}c^{(k)}sign(\omega^{(k)}\cdot \hat{x}+b^{(k)}))$$
+- The averaged perceptron$$\hat{y}=sign(\sum_{k=1}^{K}c^{(k)}(\omega^{(k)}\cdot \hat{x}+b^{(k)}))$$
+- Require keeping track of "survival time" of weight vectors
+
