@@ -107,7 +107,15 @@ $\hat{x}$: Test instance with unknown class in {-1; +1}
 - Instead of using K nearest neighbors, we use all examples x such that $dist(\hat{x},x)\le \epsilon$
 
 ## Perceptron
-**Hyperplane:** A cut that separates a $D$-dimensional space into two spaces. (e.g. in a 2D space, it is a line, in 3D space it is a plane.)
+**Hyperplane:** 
+- Def: A cut that separates a $D$-dimensional space into two spaces. (e.g. in a 2D space, it is a line, in 3D space it is a plane.)
 - In D-dimensions space, it is a $(D-1)$ dimensional hyperplane
+- Defined by an outward pointing normal vector $\omega\in \mathbb{R}^D$, where $\omega$ is **orthogonal** to any vector lying on the hyperplane
+- Hyperplane passes through the origin, unless we also define a $bias$ term b
 
-Defined by an outward pointing normal vector $@$
+**Binary classification via hyperplanes:**
+1. Let's assume that the decision boundary is a hyperplane
+2. Then, training consists in finding a hyperplane $\omega$ that separates positive from negative examples
+3. At test time, we check on what side of the hyperplane examples fall $\hat{y}=sign(\omega^Tx+b)$
+
+
