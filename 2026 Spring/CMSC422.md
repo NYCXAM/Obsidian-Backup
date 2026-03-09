@@ -168,3 +168,11 @@ $$\hat{y}=sign(\sum_{k=1}^{K}c^{(k)}(\omega^{(k)}\cdot \hat{x}+b^{(k)}))$$
 - Risk of overfitting mitigated by
 	- Early stopping
 	- Averaging
+
+## Binary Classification with Linear Models
+**Definition:**
+- Task: Separate data points in D-dimension with a hyperplane
+- Given:
+	1. An input space $X$
+	2. An unknown distribution $D$ over $X\times\{-1,1\}$
+- Compute: A function $f$ minimizing: $\mathbb{E}_{(x,y)\textasciitilde D}[f(x)\neq y]$
