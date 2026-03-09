@@ -131,4 +131,14 @@ Input:
 Output:
 - Hypothesis $h \in H$ that best approximates target function $f$
 
+**Perception: Prediction Algo**
+![[Pasted image 20260309013512.png]]
+
+**Perceptron Training Algorithm:**
+![[Pasted image 20260309013545.png]]
+
+**Practical considerations:**
+- The order of training examples matters: Random is better
+- Early stopping: Good strategy to avoid overfitting
+- Simple modifications dramatically improve performance: Voting or averaging
 
