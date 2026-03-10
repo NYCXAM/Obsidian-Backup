@@ -257,3 +257,6 @@ $$
 &= argmax_y P(Y=y)\prod_{i=1}^dP(X_i=x_i|Y=y)
 \end{align}
 $$
+**Convex**
+- Def: A "bowl" shape function, if you draw a straight line segment between any two points on the curve, that line will lie entirely on or above the curve. This property is critical because it guarantees that **any local minimum is also the global minimum**.
+- Convex test:
