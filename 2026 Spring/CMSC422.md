@@ -246,3 +246,14 @@ i.e., that $X_i$ and $X_j$ are conditionally independent given Y, for all $i \ne
 **Conditional Independence**
 - Def: $X$ is conditionally independent of $Y$ given $Z$, if $P(X|Y\cap Z)=P(X|Z)$
 - Recall that $X$ is independent of $Y$ if $P(X|Y)=P(X)$
+
+**Naive Bayes Classifier**
+- Why we need it: To use the exact Bayes Optimal Classifier, you need to calculate the likelihood: $P(X_{1},X_{2},\dots,X_d|Y)$. Means you need to calculate all possible combination of all features, if there are 20 binary features, there are $2^{20}$ combinations.
+- Naive Bayes solve this by making a unrealistic assumption: every feature is conditionally independent of every other feature. Instead of calculating one massive joint probability, it calculate the probability of each feature individually and multiply them together
+$$
+\begin{align}
+\hat{y} &= argmax_y P(Y=y|X=x) \\
+&= argmax_y P(Y=y)P(X=x|Y=y) \\
+&= argmax_y P(Y=y)\prod_{i=1}^dP(X_i=x_i|Y=y)
+\end{align}
+$$
