@@ -215,3 +215,4 @@ $$\begin{aligned} & \partial_w \max\{0, 1 - y_n(w \cdot x_n + b)\} & (6.22) \\ &
 ## Bays
 **Bayes' rule:**
 $P(A|B)=\frac{P(B|A)*P(A)}{P(B)}$, we call $P(A)$ the "prior", and $P(A|B)$ the "posterior" 
+$P(A)=P(A|B)P(B)+P(A|B')P(B')$ 
