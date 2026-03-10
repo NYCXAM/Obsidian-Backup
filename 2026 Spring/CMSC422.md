@@ -212,3 +212,6 @@ $$\begin{aligned} \nabla_w \mathcal{L} &= \nabla_w \sum_{n} \exp \left[ -y_n(w \
 - Solution: subgradient optimization
 $$\begin{aligned} & \partial_w \max\{0, 1 - y_n(w \cdot x_n + b)\} & (6.22) \\ &= \partial_w \begin{cases} 0 & \text{if } y_n(w \cdot x_n + b) > 1 \\ -y_n(w \cdot x_n + b) & \text{otherwise} \end{cases} & (6.23) \\ &= \begin{cases} \partial_w 0 & \text{if } y_n(w \cdot x_n + b) > 1 \\ -\partial_w y_n(w \cdot x_n + b) & \text{otherwise} \end{cases} & (6.24) \\ &= \begin{cases} 0 & \text{if } y_n(w \cdot x_n + b) > 1 \\ -y_n x_n & \text{otherwise} \end{cases} & (6.25) \end{aligned}$$
 ![[Pasted image 20260309193005.png]]
+## Bays
+**Bayes' rule:**
+$P(A|B)=\frac{P(B|A)*P(A)}{P(B)}$, we call $P(A)$ the "prior", and $P(A|B)$ the "posterior" 
