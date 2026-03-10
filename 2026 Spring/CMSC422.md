@@ -241,3 +241,8 @@ $P(A)=P(A|B)P(B)+P(A|B')P(B')$
 
 **Naive Bayes Assumption:**
 $P(X_{1},X_{2},\dots,X_d|Y)=\prod_{i=1}^dP(X_i|Y)$
+i.e., that $X_i$ and $X_j$ are conditionally independent given Y, for all $i \neq j$
+
+**Conditional Independence**
+- Def: $X$ is conditionally independent of $Y$ given $Z$, if $P(X|Y\cap Z)=P(X|Z)$
+- Recall that $X$ is independent of $Y$ if $P(X|Y)=P(X)$
