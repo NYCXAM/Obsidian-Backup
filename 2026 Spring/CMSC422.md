@@ -260,3 +260,8 @@ $$
 **Convex**
 - Def: A "bowl" shape function, if you draw a straight line segment between any two points on the curve, that line will lie entirely on or above the curve. This property is critical because it guarantees that **any local minimum is also the global minimum**.
 - Convex test:
+	1. Second derivative test:
+	   If the loss function $f(x)$ is twice differentiable, this is the easiest test:
+		- Single variable: Calculate the second derivative. If $f''(x) \ge 0$ for all possible inputs, it is convex. (For example, with squared loss $f(x) = x^2$, the second derivative is $2$, which is strictly positive).
+		- Multivariable: Calculate the Hessian matrix (the grid of second-order partial derivatives). If the
+	2. The tangent line test
