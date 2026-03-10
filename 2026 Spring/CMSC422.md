@@ -231,4 +231,13 @@ $P(A)=P(A|B)P(B)+P(A|B')P(B')$
 	- We assume that training examples are Independently and Identically Distributed (IID) (i.e. as we draw a sequence of examples from $D$, the n-th draw is independent from the pervious n-1 sample)
 	- We typically assume that $D$ comes from a specific family of probability distributions. (e.g., Bernouilli, Gaussian, etc)
 	- Learning means inferring parameters of that distributions (e.g., mean and covariance of the Gaussian)
-	- 
+
+**Maximum Likelihood Estimates:**
+- Assume we are dealing a coin flip situation
+- Each coin flip yields a Boolean value for X $X \sim Bernouilli: P(X) = \theta^X(1-\theta)^X$
+- Given a dataset D of IID flips, which contains $\alpha_{1}$ ones and $\alpha_{0}$ zeros
+  $P_\theta(D)=\theta ^{\alpha_1}(1-\theta)^{\alpha_{0}}$
+  $\hat{\theta}_{MLE}=arg\max_\theta P_\theta(D)=\frac{\alpha_{1}}{\alpha_{1}+\alpha_{0}}$
+
+**Naive Bayes Assumption:**
+$P(X_{1},X_{2},\dots,X_d|Y)=\prod_{i=1}^dP(X_i|Y)$
