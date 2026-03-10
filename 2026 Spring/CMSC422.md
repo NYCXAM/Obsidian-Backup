@@ -218,4 +218,17 @@ $P(A|B)=\frac{P(B|A)*P(A)}{P(B)}$, we call $P(A)$ the "prior", and $P(A|B)$ the 
 $P(A)=P(A|B)P(B)+P(A|B')P(B')$ 
 
 **Bayes Optimal Classifier:**
-- Assume that we know the data generating di
+- Assume that we know the data generating distribution $D$ (That is, we know the distribution $P(y)$ and $P(x)$)
+- We define the **Bayes Optimal classifier** as $f^{(BO)}(\hat{x})=arg \underset{\hat{y}\in Y}\max D(\hat{x},\hat{y})$
+- Theorem: Of all possible classifiers, the Bayes Optimal classifier achieves the smallest zero/one loss
+- Bayes error rate
+	- Defined as the error rate of the Bayes optimal classifier
+	- Best error rate we can ever hope to achieve under zero/one loss
+
+**Training:**
+- What does "training" mean in probabilistic setting?
+- Training = estimating $D$ from a finite training set
+	- We assume that training examples are Independently and Identically Distributed (IID) (i.e. as we draw a sequence of examples from $D$, the n-th draw is independent from the pervious n-1 sample)
+	- We typically assume that $D$ comes from a specific family of probability distributions. (e.g., Bernouilli, Gaussian, etc)
+	- Learning means inferring parameters of that distributions (e.g., mean and covariance of the Gaussian)
+	- 
