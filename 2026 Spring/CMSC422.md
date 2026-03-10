@@ -264,4 +264,6 @@ $$
 	   If the loss function $f(x)$ is twice differentiable, this is the easiest test:
 		- Single variable: Calculate the second derivative. If $f''(x) \ge 0$ for all possible inputs, it is convex. (For example, with squared loss $f(x) = x^2$, the second derivative is $2$, which is strictly positive).
 		- Multivariable: Calculate the Hessian matrix (the grid of second-order partial derivatives). If the
-	2. The tangent line test
+	2. The tangent line test:
+	   If the function is differentiable, the curve must sit entirely on or above all of its tangent lines for all points $x$ and $y$:
+$$f(y) \ge f(x) + \nabla f(x)^T(y - x)$$
