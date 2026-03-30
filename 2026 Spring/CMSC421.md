@@ -230,3 +230,4 @@ Unification is the machinery for variable substitution
 E.g., smelly(X,Y) unifies with smelly(3,1) and in the process, X gets unified with 3 and Y with 1.
 
 **Ontologies:**
+An ontology is a description of all objects and relationships that can exist.
