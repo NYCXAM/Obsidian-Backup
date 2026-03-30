@@ -163,4 +163,9 @@ Unlike propositional logic assumes world contains only facts, first-order logic 
 | Complexity         | NP-Complete                            | Semi-Decidable                                                                    |
 **Syntax of FoL:**
 ![[Pasted image 20260330024900.png]]
-
+**Possible worlds:**
+A possible world for FoL consists of:
+- A non-empty set of objects
+- For each k-ary predicate in the language, a set of k-tuples of objects (i.e., the set of tuples of objects that satisfy the predicate in this world)
+- For each k-ary function in the language, a mapping from k-tuples of objects to objects
+- For each constant symbol, a particular object (can think of constant as 0-sary functions)
