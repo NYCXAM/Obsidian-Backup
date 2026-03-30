@@ -171,4 +171,21 @@ A possible world for FoL consists of:
 - For each constant symbol, a particular object (can think of constant as 0-sary functions)
 
 ## The Horn Clause:
-A Horn clause is a disjunction of literals of which at most one is positive, 
+A Horn clause is a disjunction of literals of which at most one is positive, Mathematically, that looks like this:
+
+$$\neg P_1 \lor \neg P_2 \lor \neg P_3 \lor C$$
+
+Using De Morgan's Laws, we can factor out the negatives:
+
+$$\neg (P_1 \land P_2 \land P_3) \lor C$$
+
+By the definition of logical implication ($\neg A \lor B \equiv A \implies B$), this becomes:
+
+$$(P_1 \land P_2 \land P_3) \implies C$$
+E.g., $\{\neg \text{lawyer}(x),\text{rich}(x)\}$ or rich(x) :- lawyer(x)
+means only one of the two can be true, if $\neg \text{lawyer}(x)$ is true, then $\text{rich}(x)$ is false; if $\text{rich}(x)$ is true, then $\neg \text{lawyer}(x)$ is false
+
+Hence, every Horn clause is an implication whose premise is a conjunction of positive literals w/ a conclusion that is a single positive literal, e.g., noted as $C :- P1, P2, P3, ..., Pn$
+Horn clauses with exactly one positive literal are called definite clauses.
+
+A definite clause with no negative literals simply asserts a given proposition - called a fact. 
