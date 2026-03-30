@@ -128,11 +128,11 @@ Connectives:
 - $\leftrightarrow$ equivalent (iff)
 
 **Various Proof Methods:**
-- Model Checking($\models)$:
+- Model Checking ($\models$, proof as SAT):
 	- Truth table "inference by enumeration" (exponential in n)
 	- Improved backtracking (still searching over assignments)
 	- Heuristic search of assignments in model space (sound but incomplete, much like CSP solving)
-- Application of inference rules:
+- Application of inference rules ($\vdash$, proof as search):
 	- Proof is a sequence of rule applications
 	- Easier to do if logics are in structured form
 
