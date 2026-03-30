@@ -102,6 +102,12 @@ Loop:
 **Soundness:** Procedure i is sound if whenever $KB\vdash_i\alpha$, it is also true that $KB\models\alpha$; unsound procedures can conclude untrue statements: If $KB\vdash_i\alpha$ then $KB\models\alpha$
 **Completeness:** $i$ is complete if whenever $KB\models\alpha$, it is also true that $KB\vdash_i\alpha$; a complete procedure is able to derive any sentence that is entailed. i.e., procedure will answer any question whose answer follows from what is known by the $KB$. If $KB\models\alpha$ then $KB\vdash_i\alpha$ 
 
+**Model:** In logic, a model is simply a "possible world", meaning a specific assignment of True of False to every variable in your system. 
+**Valid (Tautology):** True in all possible models. No matter what the facts are, this sentence can not be false. 
+**Satisfiable:** True in at least on model, it could be true given the right circumstances.
+**Unsatisfiable (Contradiction):** True in zero models, it is mathematically impossible for this to be true. 
+**Deduction Theorem:** 
+
 **Logical inference is a kind of search:**
 - State: The facts of the knowledge base (KB)
 - "Search": Inference via Entailment: $KB\models\alpha$ (The Deduction Theorem)
