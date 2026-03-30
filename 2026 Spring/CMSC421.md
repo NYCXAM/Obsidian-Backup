@@ -87,3 +87,5 @@ Loop:
 2. Goal test (Only terminate when test = True here, even if the goal node is seen earlier, goal test is only run when the node is selected)
 3. Expand
 
+## Lecture 10:
+$KB\vdash_i\alpha$ says that sentence $\alpha$ can 
