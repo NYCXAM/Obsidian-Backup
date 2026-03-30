@@ -154,13 +154,13 @@ Unlike propositional logic assumes world contains only facts, first-order logic 
 
 
 
-|                    | Propositional                          | First Order Logic                                                                 | Horn Clause Logic |
-| ------------------ | -------------------------------------- | --------------------------------------------------------------------------------- | ----------------- |
-| Ontology           | Fact(P, Q)                             | Objects, Relations, Variables                                                     | Herbrand un       |
-| Syntax             | Atomic sentences + Connectives         | Connectives, Quantifiers, Constants, Variables, Predicates & Relations, Functions |                   |
-| Semantics (Models) | Truth Tables                           | Much more complex (binding of objects)                                            |                   |
-| Inference          | DPLL, GSAT, WalkSAT for model checking | Unification and Resolution; automated theorem provers                             |                   |
-| Complexity         | NP-Complete                            | Semi-Decidable                                                                    |                   |
+|                    | Propositional                          | First Order Logic                                                                 | Horn Clause Logic                                                                             |
+| ------------------ | -------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Ontology           | Fact(P, Q)                             | Objects, Relations, Variables                                                     | Herbrand universe (constants, functions, relations); closed world assumption                  |
+| Syntax             | Atomic sentences + Connectives         | Connectives, Quantifiers, Constants, Variables, Predicates & Relations, Functions | Definite clauses: $A \leftarrow B_1,\dots,B_n$                                                |
+| Semantics (Models) | Truth Tables                           | Much more complex (binding of objects)                                            | Least Herbrand model; minimal model making all clauses ture                                   |
+| Inference          | DPLL, GSAT, WalkSAT for model checking | Unification and Resolution; automated theorem provers                             | Selective Linear Definite clause resolution (SLD-resolution) via unification and backtracking |
+| Complexity         | NP-Complete                            | Semi-Decidable                                                                    | Polynomial-time for Horn-SAT potentially exponential in procedural search                     |
 **Syntax of FoL:**
 ![[Pasted image 20260330024900.png]]
 **Possible worlds:**
@@ -169,3 +169,6 @@ A possible world for FoL consists of:
 - For each k-ary predicate in the language, a set of k-tuples of objects (i.e., the set of tuples of objects that satisfy the predicate in this world)
 - For each k-ary function in the language, a mapping from k-tuples of objects to objects
 - For each constant symbol, a particular object (can think of constant as 0-sary functions)
+
+## The Horn Clause:
+A Horn clause is a disjunction of literals of which at most one is positive, 
