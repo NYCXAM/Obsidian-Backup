@@ -103,4 +103,21 @@ Loop:
 **Completeness:** $i$ is complete if whenever $KB\models\alpha$, it is also true that $KB\vdash_i\alpha$; a complete procedure is able to derive any sentence that is entailed. i.e., procedure will answer any question whose answer follows from what is known by the $KB$. If $KB\models\alpha$ then $KB\vdash_i\alpha$ 
 
 **Logical inference is a kind of search:**
-- State: The facts of the knowledge 
+- State: The facts of the knowledge base (KB)
+- "Search": Inference via Entailment: $KB\models\alpha$ (The Deduction Theorem)
+- Successor Function: Application of the possible rules of inference.
+
+**Propositional Logic:**
+Syntax: Elements of the language:
+- Primitive propositions (statements like):
+	- Bob loves Alice -> P
+	- Alice loves Bob -> Q
+- Compound Propositions:
+	- Bob loves Alice and Alice loves Bob -> $P \wedge Q$
+Connectives: 
+- $\neg$ not
+- $\wedge$ and
+- $\vee$ or
+- $\to$ implies
+- $\leftrightarrow$ equivalent (iff)
+
