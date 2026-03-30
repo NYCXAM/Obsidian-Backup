@@ -188,4 +188,32 @@ means only one of the two can be true, if $\neg \text{lawyer}(x)$ is true, then 
 Hence, every Horn clause is an implication whose premise is a conjunction of positive literals w/ a conclusion that is a single positive literal, e.g., noted as $C :- P1, P2, P3, ..., Pn$
 Horn clauses with exactly one positive literal are called definite clauses.
 
-A definite clause with no negative literals simply asserts a given proposition - called a fact. 
+A definite clause with no negative literals simply asserts a given proposition - called a fact. E.g., cat(tuna), lawyer(john)
+
+**Significance of Horn Logic and Prolog:**
+- We can restrict FoL to a subset in Horn sentences
+- Reasoning with horn clauses is much simpler
+	- Satisfiability of a propositional KB (i.e., finding calues for a symbols that will make it true) is NP complete
+	- Restricting KB to horn sentences, satisfiability is in P
+	- FoL Horn sentences is the basis for Prolog/Datalog
+	- Horn sentences give up are handling, in a general way, (1) negation and (2) disjunctions
+
+## Prolog:
+Def: A logic programming language based on Horn Clauses
+- A declarative language: describes what a computation should perform; has a clear correspondence to mathematical logic
+- Executes Proofs via Resolution/Refutation w/ a goal-directed + DFS control strategy
+	- always start from the goal clause
+	- always use the new resolvent as one of the parent clauses for resolution
+	- backtracking when the current thread fails; process is complete for Horn clause-based KBs
+- Support answer extraction (can request single or all answers)
+- Orders the clauses and literals within a clause to resolve non-determinism
+	- Q(a) may match both Q(x) <= P(x) and Q(y) <= R(y)
+	- A (sub)goal clause may contain more than one literals, i.e., <= P1(a), P2(a)
+- Uses "closed world" assumption (i.e., negation as failure)
+	- If it fails to derive P(a), then assume ~P(a)\
+
+**Key idea: FoL maps directly to Prolog:**
+FOL Syntax:  
+$∀x,y \text{ Adjacent}(x,y) ∧ \text{Wumpus}(y) ⇒ \text{Smelly}(x)$  
+Prolog Syntax:  
+$\text{smelly}(X) :- \text{adjacent}(X, Y), \text{wumpus(Y).$
