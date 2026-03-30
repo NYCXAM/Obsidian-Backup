@@ -101,3 +101,6 @@ Loop:
 **Decidable:** The procedure is guaranteed to halt with an answer (T or F)
 **Soundness:** Procedure i is sound if whenever $KB\vdash_i\alpha$, it is also true that $KB\models\alpha$; unsound procedures can conclude untrue statements: If $KB\vdash_i\alpha$ then $KB\models\alpha$
 **Completeness:** $i$ is complete if whenever $KB\models\alpha$, it is also true that $KB\vdash_i\alpha$; a complete procedure is able to derive any sentence that is entailed. i.e., procedure will answer any question whose answer follows from what is known by the $KB$. If $KB\models\alpha$ then $KB\vdash_i\alpha$ 
+
+**Logical inference is a kind of search:**
+- State: The facts of the knowledge 
