@@ -106,7 +106,7 @@ Loop:
 **Valid (Tautology):** True in all possible models. No matter what the facts are, this sentence can not be false. 
 **Satisfiable:** True in at least on model, it could be true given the right circumstances.
 **Unsatisfiable (Contradiction):** True in zero models, it is mathematically impossible for this to be true. 
-**Deduction Theorem:** 
+**Deduction Theorem:** $KB \models\alpha$ if and only if the statement ($KB\to \alpha$) is a valid sentence. $KB\models\alpha \iff M(KB)\subseteq M(\alpha)$
 
 **Logical inference is a kind of search:**
 - State: The facts of the knowledge base (KB)
