@@ -230,4 +230,17 @@ Unification is the machinery for variable substitution
 E.g., smelly(X,Y) unifies with smelly(3,1) and in the process, X gets unified with 3 and Y with 1.
 
 **Ontologies:**
-An ontology is a description of all objects and relationships that can exist.
+An ontology is a description of all objects and relationships that can exist, is the formal blueprint of a system's "worldview." It dictates exactly what kinds of things are allowed to exist in the AI's universe and how they can be connected.
+
+**TLDR**:
+UNSPSC = A filing cabinet for products/services.  
+WordNet = A thesaurus wired with logic-friendly links.  
+Wikidata = Wikipedia turned into a structured database.  
+Cyc =  An engineer’s attempt to encode how the world works.
+
+**Building your own Ontologies:**
+1. Identify items that need formalization – start with nouns and verbs  
+2. Are there any “background” notions that are not explicit in the text?  
+3. What are the relationships among the entities?  
+4. What rules or constraints are associated with the entities?  
+Note: this is moving LEFT-to-RIGHT on the ontology  spectrum, deciding how much needs to be formalized and  what the representation should be.
