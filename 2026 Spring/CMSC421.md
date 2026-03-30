@@ -161,5 +161,6 @@ Unlike propositional logic assumes world contains only facts, first-order logic 
 | Semantics (Models) | Truth Tables                           | Much more complex (binding of objects)                                            |
 | Inference          | DPLL, GSAT, WalkSAT for model checking | Unification and Resolution; automated theorem provers                             |
 | Complexity         | NP-Complete                            | Semi-Decidable                                                                    |
+**Syntax of FoL:**
+![[Pasted image 20260330024900.png]]
 
-[^1]: 
