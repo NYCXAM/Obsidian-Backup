@@ -216,4 +216,17 @@ Def: A logic programming language based on Horn Clauses
 FOL Syntax:  
 $∀x,y \text{ Adjacent}(x,y) ∧ \text{Wumpus}(y) ⇒ \text{Smelly}(x)$  
 Prolog Syntax:  
-$\text{smelly}(X) :- \text{adjacent}(X, Y), \text{wumpus(Y).$
+$\text{smelly}(X) :- \text{adjacent}(X, Y), \text{wumpus}(Y).$
+∀ is implicit : all variables in Prolog rules are universally quantified ∧ becomes (comma)  
+⇒ becomes (written "backwards": conclusion :- conditions)  
+Variables are Uppercase; atoms are lowercase  
+
+**Unification:**
+Unification is the machinery for variable substitution  
+- Unification is when two things “become one”  
+- Unification is kind of like assignment  
+- Unification is kind of like equality in algebra  
+- Unification is mostly like pattern matching
+E.g., smelly(X,Y) unifies with smelly(3,1) and in the process, X gets unified with 3 and Y with 1.
+
+**Ontologies:**
