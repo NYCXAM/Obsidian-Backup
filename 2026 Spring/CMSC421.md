@@ -88,4 +88,15 @@ Loop:
 3. Expand
 
 ## Lecture 10:
-$KB\vdash_i\alpha$ says that sentence $\alpha$ can 
+
+**Entailment:** 
+- $KB\models\alpha$
+- Means: In every possible scenario (model) where the $KB$ is true, the sentence $\alpha$ must also be true.
+- Focus: It doesn't care how you find the answer, only cares that the answer is a mathematical necessity based on the facts.
+**Derivation:**
+- $KB\vdash_i\alpha$
+- Means: There exists a specific algorithm or set of inference rules that can mechanically manipulate the symbols in the $KB$ to produce the sentence $\alpha$
+- Focus: It is entirely about the process.
+
+**Decidable:** The procedure is guaranteed to halt with an answer (T or F)
+**Soundness:** Procedure i is sound if whenever $KB\vdash_i\alpha$, it is also true that $KB\models\alpha$; unsound procedures can conclude untrue statements: If $KB$
