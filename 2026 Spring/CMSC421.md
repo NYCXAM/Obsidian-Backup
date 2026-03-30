@@ -150,5 +150,16 @@ Unlike propositional logic assumes world contains only facts, first-order logic 
 - Objects: People, house, numbers...
 - Relations: Red, bigger than, brother of...
 - Functions: Father of, best friend, end of...
+![[Pasted image 20260330023336.png]]
 
 
+
+|                    | Propositional                          | First Order Logic                                                                 |
+| ------------------ | -------------------------------------- | --------------------------------------------------------------------------------- |
+| Ontology           | Fact(P, Q)                             | Objects, Relations, Variables                                                     |
+| Syntax             | Atomic sentences + Connectives         | Connectives, Quantifiers, Constants, Variables, Predicates & Relations, Functions |
+| Semantics (Models) | Truth Tables                           | Much more complex (binding of objects)                                            |
+| Inference          | DPLL, GSAT, WalkSAT for model checking | Unification and Resolution; automated theorem provers                             |
+| Complexity         | NP-Complete                            | Semi-Decidable                                                                    |
+
+[^1]: 
