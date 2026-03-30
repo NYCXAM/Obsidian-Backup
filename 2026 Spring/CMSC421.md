@@ -113,7 +113,7 @@ Loop:
 - "Search": Inference via Entailment: $KB\models\alpha$ (The Deduction Theorem)
 - Successor Function: Application of the possible rules of inference.
 
-**Propositional Logic:**
+## Propositional Logic:
 Syntax: Elements of the language:
 - Primitive propositions (statements like):
 	- Bob loves Alice -> P
@@ -136,5 +136,19 @@ Connectives:
 	- Proof is a sequence of rule applications
 	- Easier to do if logics are in structured form
 
+**Pros and Cons of Propositional Logic:**
+Pro:
+- Propositional logic is declarative: pieces of syntax correspond to facts
+- Propositional logic allows partial/disjunctive/negated information (unlike most data structures and databases)
+- Propositional logic is compositional: meaning of $B_{1,1} \wedge P_{1,2}$ is derived from meaning of $B_{1,1}$ and of $P_{1,2}$
+- Meaning in propositional logic is context-independent (unlike natural language, where meaning depends on context)
+Con:
+- Propositional logic has very limited expressive power (unlike natural language) E.g., can't say "all houses have a color" except by writing one sentence for each
+
+## First-Order Logic
+Unlike propositional logic assumes world contains only facts, first-order logic (like natural languages) assumes the world contains:
+- Objects: People, house, numbers...
+- Relations: Red, bigger than, brother of...
+- Functions: Father of, best friend, end of...
 
 
