@@ -154,13 +154,13 @@ Unlike propositional logic assumes world contains only facts, first-order logic 
 
 
 
-|                    | Propositional                          | First Order Logic                                                                 |
-| ------------------ | -------------------------------------- | --------------------------------------------------------------------------------- |
-| Ontology           | Fact(P, Q)                             | Objects, Relations, Variables                                                     |
-| Syntax             | Atomic sentences + Connectives         | Connectives, Quantifiers, Constants, Variables, Predicates & Relations, Functions |
-| Semantics (Models) | Truth Tables                           | Much more complex (binding of objects)                                            |
-| Inference          | DPLL, GSAT, WalkSAT for model checking | Unification and Resolution; automated theorem provers                             |
-| Complexity         | NP-Complete                            | Semi-Decidable                                                                    |
+|                    | Propositional                          | First Order Logic                                                                 | Horn Clause Logic |
+| ------------------ | -------------------------------------- | --------------------------------------------------------------------------------- | ----------------- |
+| Ontology           | Fact(P, Q)                             | Objects, Relations, Variables                                                     | Herbrand un       |
+| Syntax             | Atomic sentences + Connectives         | Connectives, Quantifiers, Constants, Variables, Predicates & Relations, Functions |                   |
+| Semantics (Models) | Truth Tables                           | Much more complex (binding of objects)                                            |                   |
+| Inference          | DPLL, GSAT, WalkSAT for model checking | Unification and Resolution; automated theorem provers                             |                   |
+| Complexity         | NP-Complete                            | Semi-Decidable                                                                    |                   |
 **Syntax of FoL:**
 ![[Pasted image 20260330024900.png]]
 **Possible worlds:**
