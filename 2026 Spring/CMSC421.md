@@ -244,3 +244,8 @@ Cyc =  An engineer’s attempt to encode how the world works.
 3. What are the relationships among the entities?  
 4. What rules or constraints are associated with the entities?  
 Note: this is moving LEFT-to-RIGHT on the ontology  spectrum, deciding how much needs to be formalized and  what the representation should be.
+
+**Forward and Backward Chain:**
+FC is data-driven, automatic, unconscious processing, finding the implications of an input. E.g., object recognition, routine decisions...
+BC is goal-driven, appropriate for problem solving, looking for a path to an answer. E.g., where are the keys, how do I get an internship
+
