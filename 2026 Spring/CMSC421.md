@@ -298,4 +298,18 @@ A STRIPS problem consists of three strict components:
 	- Idea 2: numeric valued measure
 		- Measures: `$(1.50), Gallons(6), GasLevel`
 		  Measure Functions: `Volume`
-		  GasLevel = `Volume(GasInCar) = Ga`
+		  GasLevel = `Volume(GasInCar) = Gallons(6)`
+2. How do we handle time?
+	- Option 1: Time is treated like any other resource
+		- initial state has start time `time = 4:30`
+		- each operator has a time cost
+		- `WAIT` operator is often useful to have
+		  `Wait(x)` has effect time = `time + x`
+	- Option 2: Time is different from other resources
+		- actions executed in parallel take the time of the longest action
+		- constraints on time have to be consistent with with constraints on ordering 
+		- time never goes backwards
+
+## Planning Domain Definition Language (PDDL):
+PDDL expands on STRIPS, just like C++ expands on assembly. It is much more expressive and allows you to define complex logic, numbers, and hierarchies that STRIPS simply cannot handle.
+1. The
