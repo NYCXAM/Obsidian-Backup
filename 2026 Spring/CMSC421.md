@@ -286,3 +286,16 @@ A STRIPS problem consists of three strict components:
 	- actions need to incorporate resource consumption and generation
 - Time:
 	- all actions are assumed to occur instantly. how to represent deadlines, intervals, etc.?
+
+**Planning Resource Constraints:**
+1. How do we express `Have($15)`?
+	- Idea 1: 
+		- `TEN-DOLLAR(d1)^FIVE-DOLLAR(d2)`
+		  `HAVE(d1)^HAVE(d2)`
+		- Problems:
+			- extremely verbose
+			- horrible for planning (massive BF increase)
+	- Idea 2: numeric valued measure
+		- Measures: `$(1.50), Gallons(6), GasLevel`
+		  Measure Functions: `Volume`
+		  GasLevel = `Volume(GasInCar) = Ga`
