@@ -266,5 +266,23 @@ BC is goal-driven, appropriate for problem solving, looking for a path to an ans
 ## STRIPS Language:
 **Def:** Stands for (Stanford Research Institute Problem Solver), a formal language in AI used specifically for automated planning
 **Core Syntax:**
-A STRIPS problem consists of three strict components
-**Limitations:**
+A STRIPS problem consists of three strict components:
+1. **States**: Represented as a simple list (conjunction) of positive facts (e.g., `At(Robot, RoomA) ∧ DoorOpen(RoomA)`). It uses the **Closed-World Assumption**: if a fact is not explicitly listed in the state, it is mathematically assumed to be false.
+2. **Goals:** A partially specified state (e.g., `At(Robot, RoomB)`). The AI's job is to find a path that makes the goal facts true.
+3. **Actions (Operators):** This is the defining feature of STRIPS. Every action is defined by exactly three lists:
+	- **Preconditions:** What must be true _before_ the action can execute.
+	- **Delete List:** Facts that are no longer true _after_ the action (removed from the state).
+    - **Add List:** New facts that become true _after_ the action (added to the state).
+    
+**Limitations, can not express:**
+- Hierarchical Plans:
+	- scheduling Hubble harder than groceries
+	- makes plans easier to create and use; users can provide template plans
+- Complex Conditions:
+	- no univ. quantifications of variables; i.e., LAUNCH put all spacecraft parts into orbit
+	- operators are unconditional, i.e., can not express if-then-else
+- Resources:
+	- budget, materials, workers, machines, etc.
+	- actions need to incorporate resource consumption and generation
+- Time:
+	- all actions are assumed to occur instantly. how to represent deadlines, intervals, etc.?
