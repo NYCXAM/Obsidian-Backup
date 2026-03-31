@@ -312,4 +312,10 @@ A STRIPS problem consists of three strict components:
 
 ## Planning Domain Definition Language (PDDL):
 PDDL expands on STRIPS, just like C++ expands on assembly. It is much more expressive and allows you to define complex logic, numbers, and hierarchies that STRIPS simply cannot handle.
-1. The
+The Core Architecture:
+In PDDL, you don't put everything in one place. You separate the **physics** of the world from the **specific mission**.
+
+- **The Domain File (`domain.pddl`):** Defines the "Universal Rules." It lists the types of objects, the predicates (properties), and the actions (operators) available. This file is reusable across many different scenarios.
+    
+- **The Problem File (`problem.pddl`):** Defines the "Specific Instance." It lists the actual objects (e.g., `Rocket1`, `Astronaut_Bob`), the `init` state (where everything starts), and the `goal` state.
+
