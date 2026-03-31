@@ -258,8 +258,8 @@ BC is goal-driven, appropriate for problem solving, looking for a path to an ans
 - Idea: work backwards from the query q:
 - Prove q by backward chaining,  
 	- check if q is known already, or prove by BC all premises of some rule concluding q  
-Avoid loops: check if new subgoal is already on the goal stack  
-Avoid repeated work: check if new subgoal  
-1. has already been proved true, or  
-2. has already failed
+- Avoid loops: check if new subgoal is already on the goal stack  
+- Avoid repeated work: check if new subgoal  
+	1. has already been proved true, or  
+	2. has already failed
 
