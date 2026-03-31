@@ -318,7 +318,43 @@ In PDDL, you don't put everything in one place. You separate the **physics** of 
 - **The Domain File (`domain.pddl`):** Defines the "Universal Rules." It lists the types of objects, the predicates (properties), and the actions (operators) available. This file is reusable across many different scenarios.
 - **The Problem File (`problem.pddl`):** Defines the "Specific Instance." It lists the actual objects (e.g., `Rocket1`, `Astronaut_Bob`), the `init` state (where everything starts), and the `goal` state.
 
+**Components of PDDL:**
+- Objects: Things in the world that interest us.
+- Predicates: Properties of objects that we are interest in; can be true of false
+- Initial State: The state of the world that we start in
+- Goal: Things that we want to be true
+- Actions/Operators: Ways of changing the state of the world
+
+**Two parts of PDDL modelling**
+- A **domain file** for predicates and actions
+  E.g.:
+  ```pddl
+(define (domain <domain name>)
+	<PDDL code for predicates>
+	<PDDL code for first action>
+	[...]
+	<PDDL code for last action>
+)
+  ```
+- A **problem** file for objects, initial state and goal specification
+  E.g.:
+```pddl
+(define (problem <problem name>)
+	(:domain <domain name>)
+	<PDDL code for objects>
+	<PDDL code for initial state>
+	<PDDL code for goal specification>
+)
+```
+
 **How PDDL Fixes STRIPS Limitations:**
-
 PDDL uses **Requirements** (extensions) that you toggle on at the top of your file. These allow for the "broadcasting" and resource management we discussed earlier:
-
+1. Universal and Existential Quantification (`:quantifiers`)
+   PDDL allows you to use $\forall$ (forall) and $\exists$ (exists) within your actions.
+	- **The "Broadcasting" Fix:** You can now write an action that says: "When the rocket launches, for all $x$ such that $x$ is inside the rocket, move $x$ to Space."
+    
+2. Conditional Effects (`:conditional-effects`)
+   You can use `when` clauses. An action can have different results depending on the state of the world without needing two separate actions.
+	- _Example:_ A `Move` action that deletes `Dry(Robot)` **only if** the destination is `Wet(Location)`.
+3. Numeric Fluents (`:fluents`)
+   This allows the AI to do math. You can define functions like `(fuel-level ?r)` and have actions perform operations like `(decrease (fuel-level ?r) 10)`. This solves the "Resources" limitation.
