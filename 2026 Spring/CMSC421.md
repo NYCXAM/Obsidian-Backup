@@ -253,5 +253,13 @@ FC is data-driven, automatic, unconscious processing, finding the implications o
 - Every clause in the original KB is true in m (proof sketch: assume there was some expression that wasn't true, then fixed point not reached)...  
   Hence m is a model of KB  
 - If KB╞ q, q is true in every model of KB, including m
+  
 BC is goal-driven, appropriate for problem solving, looking for a path to an answer. E.g., where are the keys, how do I get an internship
+- Idea: work backwards from the query q:
+- Prove q by backward chaining,  
+	- check if q is known already, or prove by BC all premises of some rule concluding q  
+Avoid loops: check if new subgoal is already on the goal stack  
+Avoid repeated work: check if new subgoal  
+1. has already been proved true, or  
+2. has already failed
 
