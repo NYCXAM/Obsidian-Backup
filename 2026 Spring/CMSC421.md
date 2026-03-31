@@ -263,3 +263,8 @@ BC is goal-driven, appropriate for problem solving, looking for a path to an ans
 	1. has already been proved true, or  
 	2. has already failed
 
+## STRIPS Language:
+**Def:** Stands for (Stanford Research Institute Problem Solver), a formal language in AI used specifically for automated planning
+**Core Syntax:**
+A STRIPS problem consists of three strict components
+**Limitations:**
