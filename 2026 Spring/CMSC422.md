@@ -289,7 +289,8 @@ $\underset{\theta}{max} \sum_{i=1}^{N}Y^{(i)}\log g(<\theta,X^{(i)}>)+(1-Y^{(i)}
 ```
 ovr_train(D^multiclass, binary_train):
 	for i = 1 to K:
-		D^bin = 
+		D^bin = relabel D^multiclass so class i is positive and ~i is negative
+		f_i = 
 ```
 
 
