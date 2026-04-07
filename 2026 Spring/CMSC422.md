@@ -267,3 +267,5 @@ $$
 	2. The tangent line test:
 	   If the function is differentiable, the curve must sit entirely on or above all of its tangent lines for all points $x$ and $y$:
 $$f(y) \ge f(x) + \nabla f(x)^T(y - x)$$
+
+## Logistic Regression
