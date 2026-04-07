@@ -279,3 +279,17 @@ Note the term $<\theta,X^{(i)}>$ is the dot product of the weight $\theta$ and t
 Map any real number into range 0-1, used to convert the raw activation into the probability
 $g(z) = \frac{1}{1+\exp(-z)}$
 
+**Cross-entropy loss:**
+Logistic regression try to find the parameter $\theta$ to minimize the loss. We use gradient descent on this function
+$\underset{\theta}{max} \sum_{i=1}^{N}Y^{(i)}\log g(<\theta,X^{(i)}>)+(1-Y^{(i)})\log(1-g(<\theta,X^{(i)}>))$
+## Multiclass Classification:
+**OVR (One-Versus-All):**
+- Train K-many (where k is the # of classes) binary classifiers
+- Classifier k predicts whether an example belong to lass k or not
+```
+ovr_train(D^multiclass, binary_train):
+	for i = 1 to K:
+		D^bin = 
+```
+
+
