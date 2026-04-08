@@ -287,10 +287,19 @@ $\underset{\theta}{max} \sum_{i=1}^{N}Y^{(i)}\log g(<\theta,X^{(i)}>)+(1-Y^{(i)}
 - Train K-many (where k is the # of classes) binary classifiers
 - Classifier k predicts whether an example belong to lass k or not
 ```
-ovr_train(D^multiclass, binary_train):
+ova_train(D^multiclass, binary_train):
 	for i = 1 to K:
 		D^bin = relabel D^multiclass so class i is positive and ~i is negative
-		f_i = 
+		f_i = binary_train(D^bin)
+	return f_1,...,f_k
+```
+
+```
+ova_test(f1,...,fk, x)
+	for i in range (1, K):
+		y = f_i(x)
+		score_i = score_i + y
+	return argmax_k score_k
 ```
 
 
