@@ -267,32 +267,3 @@ $$
 	2. The tangent line test:
 	   If the function is differentiable, the curve must sit entirely on or above all of its tangent lines for all points $x$ and $y$:
 $$f(y) \ge f(x) + \nabla f(x)^T(y - x)$$
-
-## Logistic Regression
-Binary Classifier, by calculating the probability $P$ for a given data point $X^{(i)}$ belongs to class 1 or 0, given the model's learned parameters $\theta$
-
-$P(Y^{(i)}=1|X^{(i)},\theta)=g(<\theta,X^{(i)}>)$
-$P(Y^{(i)}=0|X^{(i)},\theta)=1-g(<\theta,X^{(i)}>)$
-Note the term $<\theta,X^{(i)}>$ is the dot product of the weight $\theta$ and the input feature $X$
-
-**Sigmoid**:
-Map any real number into range 0-1, used to convert the raw activation into the probability
-$g(z) = \frac{1}{1+\exp(-z)}$
-
-**Cross-entropy loss:**
-Logistic regression try to find the parameter $\theta$ to minimize the loss. We use gradient descent on this function
-$\underset{\theta}{max} \sum_{i=1}^{N}Y^{(i)}\log g(<\theta,X^{(i)}>)+(1-Y^{(i)})\log(1-g(<\theta,X^{(i)}>))$
-## Multiclass Classification:
-**OVR (One-Versus-All):**
-- Train K-many (where k is the # of classes) binary classifiers
-- Classifier k predicts whether an example belong to lass k or not
-```
-ovr_train(D^multiclass, binary_train):
-	for i = 1 to K:
-		D^bin = relabel D^multiclass so class i is positive and ~i is negative
-		f_i = 
-```
-
-
-
-
