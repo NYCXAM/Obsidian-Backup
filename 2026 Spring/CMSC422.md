@@ -305,7 +305,9 @@ ova_test(f1,...,fk, x)
 **AVA (All-Versus-All):**
 ```
 ava_train(D^multiclass,binary_train):
+$$
 	f_ij = 
+$$
 ```
 
 
