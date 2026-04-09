@@ -302,5 +302,11 @@ ova_test(f1,...,fk, x)
 	return argmax_k score_k
 ```
 
+**AVA (All-Versus-All):**
+```
+ava_train(D^multiclass,binary_train):
+	f_ij = 
+```
+
 
 
