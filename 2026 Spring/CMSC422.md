@@ -293,4 +293,5 @@ $\underset{\theta}{max} \sum_{i=1}^{N}Y^{(i)}\log g(<\theta,X^{(i)}>)+(1-Y^{(i)}
 ![[Pasted image 20260408210024.png]]
 
 ## Neural Network:
-
+**Questions:** Why did we restrict our models to linear $w^Tx+b$?
+- Convex optimizations. Because linear equations often results in a convex loss function, so that the loss function has exactly 1 losest p
