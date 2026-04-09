@@ -292,4 +292,5 @@ $\underset{\theta}{max} \sum_{i=1}^{N}Y^{(i)}\log g(<\theta,X^{(i)}>)+(1-Y^{(i)}
 - Classifier k predicts whether an example belong to class k or not
 ![[Pasted image 20260408210024.png]]
 
+## Neural Network:
 
