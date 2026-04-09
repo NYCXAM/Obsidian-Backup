@@ -294,4 +294,13 @@ $\underset{\theta}{max} \sum_{i=1}^{N}Y^{(i)}\log g(<\theta,X^{(i)}>)+(1-Y^{(i)}
 
 ## Neural Network:
 **Questions:** Why did we restrict our models to linear $w^Tx+b$?
-- Convex optimizations. Because linear equations often results in a convex loss function, so that the loss function has exactly 1 losest p
+- Convex optimizations. Because linear equations often results in a convex loss function, so that the loss function has exactly 1 lowest point. 
+- Gradient descent. GD and SGD are efficient and reliable for convex loss function.
+- Lose the ability to learn complex, non-linear relationship. 
+
+**Def:**
+- Neural networks are made up of nodes or units, connected by links
+- Each link has an associated weight and activation level
+- Each node has an input function (typically summing over weighted inputs), an activation function, and an output
+
+
