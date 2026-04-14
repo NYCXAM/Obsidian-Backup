@@ -293,3 +293,4 @@ $\underset{\theta}{max} \sum_{i=1}^{N}Y^{(i)}\log g(<\theta,X^{(i)}>)+(1-Y^{(i)}
 ![[Pasted image 20260408210024.png]]
 
 
+$L_{\text{hinge}} = \sum_i \max(0,\ 1-y_i s_i)$
