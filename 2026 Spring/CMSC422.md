@@ -293,4 +293,4 @@ $\underset{\theta}{max} \sum_{i=1}^{N}Y^{(i)}\log g(<\theta,X^{(i)}>)+(1-Y^{(i)}
 ![[Pasted image 20260408210024.png]]
 
 
-$\sum_i \log(1 + \exp(-y_i s_i))$
+$L = \sum_i e^{-y_i s_i}$
