@@ -358,3 +358,5 @@ PDDL uses **Requirements** (extensions) that you toggle on at the top of your fi
 	- _Example:_ A `Move` action that deletes `Dry(Robot)` **only if** the destination is `Wet(Location)`.
 3. Numeric Fluents (`:fluents`)
    This allows the AI to do math. You can define functions like `(fuel-level ?r)` and have actions perform operations like `(decrease (fuel-level ?r) 10)`. This solves the "Resources" limitation.
+
+## Uncertainty
