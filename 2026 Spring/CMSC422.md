@@ -277,7 +277,7 @@ Note the term $<\theta,X^{(i)}>$ is the dot product of the weight $\theta$ and t
 
 **Sigmoid**:
 Map any real number into range 0-1, used to convert the raw activation into the probability
-$g(z) = \frac{1}{1+\exp(-z)}$
+$g(z) = \frac{1}{1+e^{-z}}$
 
 **Cross-entropy loss:**
 Logistic regression try to find the parameter $\theta$ to minimize the loss. We use gradient descent on this function
