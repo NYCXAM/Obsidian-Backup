@@ -150,7 +150,7 @@ Unlike propositional logic assumes world contains only facts, first-order logic 
 - Objects: People, house, numbers...
 - Relations: Red, bigger than, brother of...
 - Functions: Father of, best friend, end of...
-![[Pasted image 20260330023336.png]]
+![[Pasted image 20260330023336 1.png]]
 
 
 
@@ -162,7 +162,7 @@ Unlike propositional logic assumes world contains only facts, first-order logic 
 | Inference          | DPLL, GSAT, WalkSAT for model checking | Unification and Resolution; automated theorem provers                             | Selective Linear Definite clause resolution (SLD-resolution) via unification and backtracking |
 | Complexity         | NP-Complete                            | Semi-Decidable                                                                    | Polynomial-time for Horn-SAT potentially exponential in procedural search                     |
 **Syntax of FoL:**
-![[Pasted image 20260330024900.png]]
+![[Pasted image 20260330024900 1.png]]
 **Possible worlds:**
 A possible world for FoL consists of:
 - A non-empty set of objects

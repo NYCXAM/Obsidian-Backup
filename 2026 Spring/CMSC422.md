@@ -87,7 +87,7 @@ Given:
 D: Training Data, 
 K: # of neighbors that classification is based on, 
 $\hat{x}$: Test instance with unknown class in {-1; +1}
-![[Pasted image 20260308194308.png]]
+![[Pasted image 20260308194308 1.png]]
 **Two approaches to learning:**
 - Eager learning:
 	- Induce an abstract model from data
@@ -132,10 +132,10 @@ Output:
 - Hypothesis $h \in H$ that best approximates target function $f$
 
 **Perception: Prediction Algo**
-![[Pasted image 20260309013512.png]]
+![[Pasted image 20260309013512 1.png]]
 
 **Perceptron Training Algorithm:**
-![[Pasted image 20260309013545.png]]
+![[Pasted image 20260309013545 1.png]]
 
 **Practical considerations:**
 - The order of training examples matters: Random is better
@@ -157,7 +157,7 @@ $$\hat{y}=sign(\sum_{k=1}^{K}c^{(k)}(w^{(k)}\cdot \hat{x}+b^{(k)}))$$
 - If the training data $D=\{(x_{1},y_{1}),\dots,(x_N, y_N)\}$ is **linearly separable** with margin $\gamma$ by a unit norm hyperplane $w_*(||w_*||=1)$ with $b=0$, Then **perceptron training converges after $\frac{R^2}{\gamma^2}$ errors** during training (assuming $(||x||<R)$ for all $x$)
 
 **Margin of a dataset $D$**
-![[Pasted image 20260309020659.png]]
+![[Pasted image 20260309020659 1.png]]
 
 **Practical Implications:**
 - Sensitivity to noise:
@@ -191,7 +191,7 @@ $$\min_{w,b} L(\mathbf{w}, b) = \min_{w,b} \sum_{n=1}^{N} \mathbb{I}(y_n(w^T x_n
 	- Where $R^{cnt}(w,b)=\sum_{d=1}^D\mathbb{I}(w_d\neq 0)$. In practice, because raw count is too slow (NP-hard), we use approximations like L1 norm (Lasso) or L2 norm (Ridge)
 
 ## Gradient descent
-![[Pasted image 20260309052932.png]]
+![[Pasted image 20260309052932 1.png]]
 
 **Practical questions:**
 - When to stop?
@@ -211,7 +211,7 @@ $$\begin{aligned} \nabla_w \mathcal{L} &= \nabla_w \sum_{n} \exp \left[ -y_n(w \
 - Problem: some objective functions are not differentiable everywhere (e.g. hinge loss, l1 norm)
 - Solution: subgradient optimization
 $$\begin{aligned} & \partial_w \max\{0, 1 - y_n(w \cdot x_n + b)\} & (6.22) \\ &= \partial_w \begin{cases} 0 & \text{if } y_n(w \cdot x_n + b) > 1 \\ -y_n(w \cdot x_n + b) & \text{otherwise} \end{cases} & (6.23) \\ &= \begin{cases} \partial_w 0 & \text{if } y_n(w \cdot x_n + b) > 1 \\ -\partial_w y_n(w \cdot x_n + b) & \text{otherwise} \end{cases} & (6.24) \\ &= \begin{cases} 0 & \text{if } y_n(w \cdot x_n + b) > 1 \\ -y_n x_n & \text{otherwise} \end{cases} & (6.25) \end{aligned}$$
-![[Pasted image 20260309193005.png]]
+![[Pasted image 20260309193005 1.png]]
 ## Bays
 **Bayes' rule:**
 $P(A|B)=\frac{P(B|A)*P(A)}{P(B)}$, we call $P(A)$ the "prior", and $P(A|B)$ the "posterior" 
@@ -286,10 +286,10 @@ $\underset{\theta}{max} \sum_{i=1}^{N}Y^{(i)}\log g(<\theta,X^{(i)}>)+(1-Y^{(i)}
 **OVR (One-Versus-All):**
 - Train K-many (where k is the # of classes) binary classifiers
 - Classifier k predicts whether an example belong to class k or not
-![[Pasted image 20260408210013.png]]
+![[Pasted image 20260408210013 1.png]]
 **AVA (All-Versus-All):**
 - Train $\frac{K(k-1)}{2}$-many binary classifier
 - Classifier k predicts whether an example belong to class k or not
-![[Pasted image 20260408210024.png]]
+![[Pasted image 20260408210024 1.png]]
 
 
