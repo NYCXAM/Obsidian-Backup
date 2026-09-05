@@ -10,12 +10,24 @@
 - The Internet also provides applications with a programming interface for sending and receiving data.
 
 ### Circuit switching vs. packet switching
-**Circuit switching:** Reserves end-to-end resources for a call. It provides predictable performance, but reserved capacity sits idle when the sender has no data.
+**Circuit switching:** Reserves end-to-end resources for a call. It provides predictable performance, but reserved capacity sits idle when the sender has no data. (E.g. If your phone call reserves 1 Mbps but you are silent, that 1 Mbps remains reserved for you and cannot be temporarily used by someone else.)
 
 **Packet switching:** Splits data into packets that share links. Routers queue packets when the output link is busy; a full buffer drops arriving packets.
 
 **Multiplexing:** Multiple logical flows share one physical link.
 
+### Switches vs Routers
+**Switches:** A switch connects devices inside the same local network, such as computers in one home, office, or classroom.
+- Devices connect to the switch.
+- The switch forwards Ethernet **frames** based mainly on **MAC addresses**.
+- It provides local connectivity, but it generally does not choose a path between separate networks.
+- The several switches shown are still part of one larger connected local network.
+
+**Routers:** A router connects separate networks together.
+- Each cloud represents a different network or subnet.
+- Routers sit between those networks.
+- They forward IP **packets** toward their destination using IP addresses and routing tables.
+- A packet may pass through several routers before reaching the destination network.
 ### Network edge and core
 - **Network edge:** Hosts, access networks, and physical media. Common access networks include home Ethernet/Wi-Fi, enterprise Ethernet, and cellular networks.
 - **Network core:** A mesh of routers that forwards packets hop by hop.
