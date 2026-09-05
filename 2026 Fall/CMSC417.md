@@ -1,7 +1,7 @@
 ## Foundations and Internetworking
 
 ### Internet basics
-**Internet:** A network of networks: end systems connect through access ISPs, which interconnect through regional networks, large tier-1 ISPs, and Internet exchange points (IXPs).
+**Internet:** A network of networks: end systems connect through access Internet Service Provider (ISPs), which interconnect through regional networks, large tier-1 ISPs, and Internet exchange points (IXPs).
 
 - **Hosts / end systems:** Devices running network applications, such as clients and servers.
 - **Communication links:** Fiber, copper, radio, or satellite; their transmission rate is the **bandwidth**.
