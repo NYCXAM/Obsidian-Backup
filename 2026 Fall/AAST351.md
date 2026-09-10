@@ -30,10 +30,12 @@ Coercion (domination vs Concent):
 - The producers of the message/visual/media encodes messages by using useful signs to get their meaning across the audience. The media carries important messages, which produces encodes in texts. However, audiences come to their own individual interpretations when they decode a text through the process of negotiation
 - Connotation: refer to less fixed and therefore more conventionalized and changeable, associative
 - Meanings clearly vary fro instance to instance and therefore must depend on the intervention of codes
-- The sweater always sinigies a "warm garment" (denotation) and thus the activity/value of "keeping warm". But it is also possible, at its more connotative levels, to signify :the coming of winter" or "a cold day"
+- The sweater always singes a "warm garment" (denotation) and thus the activity/value of "keeping warm". But it is also possible, at its more connotative levels, to signify :the coming of winter" or "a cold day"
 - Hall's point is that there is "no necessary correspondence" between encoding and decoding
 - According to Hall, audiences can take three different positions when decoding a media text:
-	1. Preferred reading/Dominant position: when audiences accept the 
+	1. Preferred reading/Dominant position: when audiences accept the message that the media producers wanted them to get
+	2. Negotiated reading/position: when audiences accept some aspect of the message, but reject others
+	3. Oppositional reading/position: when audiences reject the connotations of a media producer's message (through they may still understand the denotations)
 
 **Media and Meaning**
 - menaing is not the same for all consumers
