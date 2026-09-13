@@ -100,6 +100,13 @@ for each neeighbor w:
 	D_w(y) = ? for all destination y in N.
 for each neighbor w:
 	send distance vector D_x = [D_x(y): y in N] to w	
+	
+while true:
+	wait(until I receive any distance vector from some neighbor w)
+	for each y in N:
+		D_x(y) = minv{c(x, v) + D_v(y)}
+		if D_x(y) is changed for any destination y:
+			send distance vector D_x = [D_x(y):y in N] to all neighbors
 ```
 ### Link failures and count to infinity
 After a link cost increases or a link fails, neighboring routers can incorrectly believe that the other still has a route to the destination. They then keep advertising increasingly expensive routes through each other. This slow, looping increase is the **count-to-infinity problem**.
