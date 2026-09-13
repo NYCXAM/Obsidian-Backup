@@ -73,6 +73,54 @@ Connecting hosts requires:
 - A router saves the latest vector from each neighbor and recalculates when a received vector changes or a neighbor link fails/changes cost.
 - Distance vector and link state are the two main classes of dynamic routing protocols.
 
+## Routing Algorithms
+
+### Distance-vector routing in detail
+Each router's routing table stores a destination, its current least-cost estimate, and the next hop. Initially, it knows only itself at cost 0 and its directly connected neighbors; all other destinations have cost $\infty$.
+
+**Bellman-Ford equation:**
+$$d_x(y) = \min_{v \in N(x)} \{c(x,v) + d_v(y)\}$$
+
+- $d_x(y)$: Least cost from router $x$ to destination $y$.
+- $c(x,v)$: Cost of the direct link from $x$ to neighbor $v$.
+- $d_v(y)$: Neighbor $v$'s advertised cost to $y$.
+- The neighbor giving the minimum becomes the next hop in $x$'s forwarding table.
+
+**How updates work:**
+1. Each router sends its distance vector to direct neighbors.
+2. It saves the latest vector received from each neighbor.
+3. For each destination, it recomputes the best cost with the Bellman-Ford equation.
+4. If any cost changes, it advertises its updated vector to neighbors.
+
+Routers send advertisements periodically, typically every 30 seconds in RIP, and through **triggered updates** after a routing-table change, link failure, or link-cost change. The distributed process converges when no router can improve any estimate.
+
+### Link failures and count to infinity
+After a link cost increases or a link fails, neighboring routers can incorrectly believe that the other still has a route to the destination. They then keep advertising increasingly expensive routes through each other. This slow, looping increase is the **count-to-infinity problem**.
+
+**Mitigations:**
+- **Small infinity:** Use a finite value to mean unreachable. RIP uses hop count, with 15 as the largest reachable distance and 16 as infinity.
+- **Split horizon:** Do not advertise a route back to the neighbor from which that route was learned.
+- **Poisoned reverse:** Advertise that route back to the learning neighbor with cost $\infty$, explicitly telling it not to use this router for that destination.
+
+Poisoned reverse prevents many two-router loops, but it cannot detect every loop involving three or more routers. Routing tables also need to age out old information, so stale advertisements do not persist indefinitely.
+
+**RIP:** Routing Information Protocol is a distance-vector protocol. Its small maximum hop count makes it suitable only for relatively small networks. Other distance-vector limitations include routing loops and static, predetermined link costs.
+
+### Link-state routing
+Distance vector learns routes through neighbors' estimates. **Link-state routing** gives every router a consistent view of the network topology.
+
+- Each router creates a **link-state packet (LSP)** describing only its directly connected neighbors and their link costs.
+- The router distributes the LSP to all routers, not only to its immediate neighbors.
+- After collecting LSPs from every router, each router can construct the same network graph and calculate routes locally.
+
+An LSP contains:
+1. The ID of the router that created it.
+2. The costs of links to its direct neighbors.
+3. A sequence number, so routers can identify newer information.
+4. A time-to-live (TTL), so stale information eventually disappears.
+
+**RFC:** A Request for Comments is an Internet standards publication, primarily produced through the IETF.
+
 ## Socket Programming in C
 
 **Socket:** An abstraction that lets an application send and receive data through a network, much like a file handle lets a program read and write a file. In C, a socket is represented by a file descriptor (`sockfd`).
