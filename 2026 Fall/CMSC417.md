@@ -93,7 +93,14 @@ $$d_x(y) = \min_{v \in N(x)} \{c(x,v) + d_v(y)\}$$
 4. If any cost changes, it advertises its updated vector to neighbors.
 
 Routers send advertisements periodically, typically every 30 seconds in RIP, and through **triggered updates** after a routing-table change, link failure, or link-cost change. The distributed process converges when no router can improve any estimate.
-
+```
+for all destinations y in N:
+	D_x(y)=c(x, y)   //if y is not a neighbor then c(x, y) = inf
+for each neeighbor w:
+	D_w(y) = ? for all destination y in N.
+for each neighbor w:
+	send distance vector D_x = [D_x(y): y in N] to w	
+```
 ### Link failures and count to infinity
 After a link cost increases or a link fails, neighboring routers can incorrectly believe that the other still has a route to the destination. They then keep advertising increasingly expensive routes through each other. This slow, looping increase is the **count-to-infinity problem**.
 
