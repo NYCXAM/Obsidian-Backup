@@ -41,7 +41,7 @@ The Spring 2026 Quiz 1 used 10 short questions: check-all-that-apply, one correc
 ## Practice Quiz
 
 ### 1. Check all valid color definitions for blue.
-123
+1 2
 - `<color name="blue">#00F</color>`
 - `<color name="blue">#0000FF</color>`
 - `<color "blue">#00F</color>`
@@ -50,11 +50,11 @@ The Spring 2026 Quiz 1 used 10 short questions: check-all-that-apply, one correc
 ### 2. In `activity_main.xml`, set a `TextView`'s text from a string resource named `welcome`. One line only.
 
 ```xml
-android:text =
+android:text = "@string/welcom"
 ```
 
 ### 3. Choose the controller for the TipCalculator app.
-1
+2
 - `TipCalculator.kt`
 - `MainActivity.kt`
 - `activity_main.xml`
@@ -63,7 +63,7 @@ android:text =
 ### 4. Complete the ID assignment for a view whose ID must be `amount_bill`. One line only.
 
 ```xml
-android:id =
+android:id = "@+id/amount_bill"
 ```
 
 ### 5. Check all correct statements about Kotlin null safety.
@@ -75,8 +75,11 @@ android:id =
 
 ### 6. Declare the header of `calculateTip`, which accepts `bill: Double` and returns `Double`. One line only.
 
+```kotlin
+fun calculateTip(bill: Double): Double
+```
 ### 7. Which expression gives a `TextView` the full width of its parent?
-3
+2
 - `android:layout_width="wrap_content"`
 - `android:layout_width="match_parent"`
 - `android:layout_width="parent"`
@@ -85,18 +88,18 @@ android:id =
 ### 8. Complete the Logcat warning call that uses tag `MainActivity` and message `ready`. One line only.
 
 ```kotlin
-Log.w(
+Log.w("MainActivity", "r
 ```
 
 ### 9. Check all valid ways to update a calculator when the user edits either input field.
-
+123
 - Implement `TextWatcher` and override `afterTextChanged`.
 - Register the same `TextWatcher` on both `EditText` fields.
 - Use `addTextChangedListener` on the input fields.
 - Put `android:onClick` on the root layout and expect it to run for every keystroke.
 
 ### 10. Which Kotlin class header means `SavingsAccount` inherits from `Account`?
-
+3
 - `class Account : SavingsAccount()`
 - `class SavingsAccount extends Account`
 - `class SavingsAccount : Account()`
