@@ -67,7 +67,7 @@ android:id = "@+id/amount_bill"
 ```
 
 ### 5. Check all correct statements about Kotlin null safety.
-124
+123
 - `String?` may hold `null`.
 - A `String` value may be passed directly wherever `String?` is expected.
 - `!!` safely converts `null` to an empty string.
@@ -88,7 +88,7 @@ fun calculateTip(bill: Double): Double
 ### 8. Complete the Logcat warning call that uses tag `MainActivity` and message `ready`. One line only.
 
 ```kotlin
-Log.w("MainActivity", "r
+Log.w("MainActivity", "ready")
 ```
 
 ### 9. Check all valid ways to update a calculator when the user edits either input field.
