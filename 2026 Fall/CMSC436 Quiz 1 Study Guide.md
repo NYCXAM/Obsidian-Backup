@@ -138,10 +138,10 @@ Log.w("MainActivity", "ready")
 12. 1 3
 13. 2 3 4
 14. 1 2 3
-15. 1
-16. abc
+15. ==3==
+16. ==cba==
 17. 1 2 3
-18. 
+18. 1
 ### 1. XML elements
 
 Check all valid XML elements.
