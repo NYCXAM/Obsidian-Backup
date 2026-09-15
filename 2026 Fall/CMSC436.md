@@ -9,6 +9,7 @@ An Android Studio project separates Kotlin source code from **resources**, such 
 - `res/values/strings.xml`, `colors.xml`, and `themes.xml` hold reusable text, colors, and styles.
 - `AndroidManifest.xml` declares app components and requested capabilities. It also configures items such as the app label, icon, theme, and activity orientation.
 - Android generates resource IDs. Refer to a resource with `R.type.name`, such as `R.layout.activity_main`, `R.string.app_name`, or `R.id.amount_bill`. Do not edit generated resource files.
+- For the XML-based projects used here, create an **Empty Views Activity**. `MainActivity.kt` extends `AppCompatActivity`; `activity_main.xml` supplies its initial view.
 
 ### Activity setup
 
@@ -50,6 +51,7 @@ Android color literals use RGB hexadecimal values:
 
 - `#RRGGBB` for an opaque color.
 - `#AARRGGBB` when an alpha/opacity channel is included. `00` is transparent and `FF` is opaque.
+- `#RGB` and `#ARGB` are shorthand forms. For example, `#00F` and `#F00F` are opaque blue.
 
 A **style** gathers attributes for a kind of view; styles may inherit from a parent. Apply one with `style="@style/Name"`. This keeps layout XML focused on structure rather than repeated visual attributes.
 
@@ -75,12 +77,15 @@ All ordinary GUI components inherit directly or indirectly from `View`.
 
 **Margin** is space outside a view; **padding** is space inside a view around its content. Text-related attributes include `android:textColor`, `android:textSize`, and `android:textStyle`.
 
+Use `sp` for text size and `dp` for layout dimensions. A string resource uses `<string name="name">value</string>` and is referenced as `@string/name`; colors follow the same pattern with `@color/name`.
+
 ## Kotlin essentials
 
 - Kotlin does not require a semicolon at the end of a statement. It supports `//`, `/* ... */`, and documentation comments.
 - Common types include `Int`, `Long`, `Double`, `Float`, `Short`, `Byte`, `Char`, `Boolean`, and `String`.
 - `var` declares a mutable variable. `val` declares a value that can be assigned once. Type annotations are optional when Kotlin can infer the type.
 - `const val` is a compile-time constant. It must be declared outside a local function and initialized with a string or primitive value. A regular `val` can hold a value computed at run time or an object reference.
+- Kotlin has no ternary operator. Use an `if` expression instead. Use `print` or `println` for simple output.
 - Convert values explicitly with functions such as `toInt()`, `toDouble()`, and `toString()`.
 - A variable's scope starts at its declaration and ends with its innermost enclosing block.
 
@@ -140,6 +145,8 @@ Use `Unit` for a function with no meaningful return value. It is Kotlin's counte
 ### Classes and inheritance
 
 A class may declare a **primary constructor** in its header and additional constructors in its body. Add `var` or `val` to a primary-constructor parameter when it should become a property. Kotlin creates objects without `new`.
+
+Every non-null property must be initialized before use. Initialize it at declaration, initialize it in a constructor or `init` block, or use `lateinit var` for a non-primitive reference that will be assigned later.
 
 ```kotlin
 class Person(var name: String, var age: Int) {
@@ -238,6 +245,8 @@ button.setOnClickListener {
 }
 ```
 
+When XML uses `android:onClick="calculate"`, the activity method has the form `fun calculate(v: View)`. For the tip calculator, read each `EditText`, convert the text to a number, update the `TipCalculator` model, then display the tip and total in `TextView`s.
+
 For a calculator that updates as the user types, register a `TextWatcher` on each `EditText`. `afterTextChanged` is the appropriate callback when the calculation should use the completed edit.
 
 ```kotlin
@@ -283,6 +292,6 @@ override fun onCreate(savedInstanceState: Bundle?) {
 ## Running and debugging
 
 - Run an app on an Android Virtual Device (AVD) from Android Studio's Device Manager or on a connected device with developer options and USB debugging enabled.
-- Use **Logcat** to inspect messages. `Log.d`, `Log.i`, `Log.w`, and `Log.e` label messages by level; use a consistent tag such as `"MainActivity"` to filter output.
+- Use **Logcat** to inspect messages. `Log.d`, `Log.i`, `Log.w`, and `Log.e` label messages by level; `Log.w("MainActivity", "message")` uses the first argument as the filter tag.
 - Use Android Studio's debugger to set breakpoints, inspect variables, step through code, and resume execution.
 - Gradle builds the app package. An APK is the distributable Android application file (`.apk`).
