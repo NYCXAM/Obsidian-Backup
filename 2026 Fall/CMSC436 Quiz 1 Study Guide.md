@@ -1,4 +1,3 @@
-# CMSC436 Quiz 1 Study Guide
 
 Scope: `1-HelloAndroid`, `2A-KotlinBasics`, and `3-TipCalculator`.
 
