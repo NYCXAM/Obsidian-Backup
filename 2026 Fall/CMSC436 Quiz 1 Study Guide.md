@@ -41,7 +41,7 @@ The Spring 2026 Quiz 1 used 10 short questions: check-all-that-apply, one correc
 ## Practice Quiz
 
 ### 1. Check all valid color definitions for blue.
-
+123
 - `<color name="blue">#00F</color>`
 - `<color name="blue">#0000FF</color>`
 - `<color "blue">#00F</color>`
@@ -54,7 +54,7 @@ android:text =
 ```
 
 ### 3. Choose the controller for the TipCalculator app.
-
+1
 - `TipCalculator.kt`
 - `MainActivity.kt`
 - `activity_main.xml`
@@ -67,7 +67,7 @@ android:id =
 ```
 
 ### 5. Check all correct statements about Kotlin null safety.
-
+124
 - `String?` may hold `null`.
 - A `String` value may be passed directly wherever `String?` is expected.
 - `!!` safely converts `null` to an empty string.
@@ -76,7 +76,7 @@ android:id =
 ### 6. Declare the header of `calculateTip`, which accepts `bill: Double` and returns `Double`. One line only.
 
 ### 7. Which expression gives a `TextView` the full width of its parent?
-
+3
 - `android:layout_width="wrap_content"`
 - `android:layout_width="match_parent"`
 - `android:layout_width="parent"`
