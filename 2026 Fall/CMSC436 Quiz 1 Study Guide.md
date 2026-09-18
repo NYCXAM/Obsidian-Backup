@@ -50,7 +50,7 @@ The Spring 2026 Quiz 1 used 10 short questions: check-all-that-apply, one correc
 ### 2. In `activity_main.xml`, set a `TextView`'s text from a string resource named `welcome`. One line only.
 
 ```xml
-android:text = "@string/welcome"
+android:text = "@string/welcom"
 ```
 
 ### 3. Choose the controller for the TipCalculator app.
@@ -124,7 +124,24 @@ Log.w("MainActivity", "ready")
 - Explain MVC using the TipCalculator files without looking at notes.
 - Trace the input-to-output path: `EditText` -> Kotlin conversion -> model -> `TextView`.
 
-
+1. 1 ==2 4==
+2. ==setContentView(R.Layout.activity_main)==
+3. android:layout_toRightOf="@id/label_bill"
+4. 1 2 4
+5. style="@style/InputStyle"
+6. android:theme="@style/Theme.TipCalculator"
+7. 1 3 4
+8. 1 3
+9. 2
+10. 3
+11. 1 ==3==
+12. 1 3
+13. 2 3 4
+14. 1 2 3
+15. ==3==
+16. ==cba==
+17. 1 2 3
+18. 1
 ### 1. XML elements
 
 Check all valid XML elements.
@@ -139,7 +156,7 @@ Check all valid XML elements.
 Inside `onCreate`, set the activity’s screen to the layout file `activity_main.xml`. One line only.
 
 ```
-_setContentView(R.layout.activity_main)___________________________
+____________________________
 ```
 
 ### 3. Relative layout
@@ -147,7 +164,7 @@ _setContentView(R.layout.activity_main)___________________________
 An `EditText` must appear to the right of a `TextView` whose ID is `label_bill`. Complete the attribute value.
 
 ```
-android:layout_toRightOf="@id/label_bill________________"
+android:layout_toRightOf="________________"
 ```
 
 ### 4. Margins and padding
@@ -164,7 +181,7 @@ Check all correct statements.
 A style named `InputStyle` already exists in `themes.xml`. Apply it to an `EditText`. One line only.
 
 ```
-__android:style = "@style/InputStyle" __________________________
+____________________________
 ```
 
 ### 6. Applying a theme
@@ -172,7 +189,7 @@ __android:style = "@style/InputStyle" __________________________
 Complete the manifest attribute that applies the style `Theme.TipCalculator` to the whole app.
 
 ```
-android:theme = "style/Theme.TipCalculator"____________________________
+android:____________________________
 ```
 
 ### 7. `var`, `val`, and reassignment
