@@ -133,6 +133,27 @@ An LSP contains:
 3. A sequence number, so routers can identify newer information.
 4. A time-to-live (TTL), so stale information eventually disappears.
 
+**Reliable flooding:** A router stores the most recent LSP from each source. When it receives a newer LSP, it adds it to its database, forwards it to all neighbors except the one that sent it, and recalculates routes. Duplicate or older LSPs are ignored. Routers generate LSPs periodically with increasing sequence numbers, decrement TTL while forwarding and aging stored LSPs; an LSP is discarded when its TTL reaches 0.
+
+### Shortest-path routing
+After flooding, each router uses **Dijkstra's algorithm** to find the lowest-cost paths from itself to every destination. Link costs must be non-negative.
+
+- **Confirmed:** Nodes whose least-cost path is final.
+- **Tentative:** Candidate paths that may still improve.
+
+Start by confirming the local router with cost 0. Repeatedly confirm the tentative node with the smallest cost, then relax its links: for every unconfirmed neighbor, replace its tentative cost if the newly confirmed node gives a cheaper path. Each table entry records `<Destination, Cost, NextHop>`.
+
+### OSPF and LS versus DV
+**OSPF (Open Shortest Path First):** A link-state routing protocol that floods link-state advertisements and computes routes with Dijkstra's algorithm. OSPF runs directly over IP using protocol number 89, not TCP or UDP.
+
+| | Link state | Distance vector |
+| --- | --- | --- |
+| Information shared | Direct-neighbor links and costs | Estimated cost to every destination |
+| Scope of updates | Flooded throughout the routing domain | Sent only to direct neighbors |
+| Path computation | Each router runs Dijkstra on a topology map | Routers iteratively apply Bellman-Ford |
+| Common issue | More control traffic and local computation | Routing loops and count to infinity |
+| Effect of a bad router | Can advertise incorrect local link costs | Can advertise incorrect path costs that other routers reuse |
+
 **RFC:** A Request for Comments is an Internet standards publication, primarily produced through the IETF.
 
 ## Internet Protocol (IPv4)
@@ -160,6 +181,8 @@ An IPv4 datagram has a variable-length header, normally 20 bytes without options
 
 Fragments carry the same identifier so the destination can group them. The **more fragments (MF)** flag is 1 on every fragment except the last. The **fragment offset** gives the fragment's data position relative to the original payload in units of 8 bytes. Therefore, every non-final fragment's data length must be a multiple of 8 bytes.
 
+An unfragmented datagram has `MF = 0` and fragment offset 0. If the destination cannot collect all fragments before its reassembly timer expires, it discards the incomplete datagram.
+
 Example: An original 1420-byte datagram with a 20-byte header contains 1400 bytes of data. With MTU 532, each full fragment carries 512 bytes of data:
 
 | Fragment | Data length | Total length | Offset | MF |
@@ -174,6 +197,8 @@ An IPv4 address is a globally unique 32-bit identifier for a network interface, 
 Addresses have a **network prefix** and a **host portion**. Routers forward based on network prefixes rather than individual hosts, which keeps forwarding tables manageable and lets a network add hosts without changing Internet-wide routes.
 
 **Classful addressing:** The older system used fixed-size Class A (`/8`), B (`/16`), and C (`/24`) blocks. It wasted addresses and increased routing-table size, motivating subnetting and CIDR.
+
+**Address allocation hierarchy:** ICANN allocates large address blocks to Regional Internet Registries, which allocate to ISPs and large institutions. ISPs can allocate smaller prefixes to customers, preserving hierarchical aggregation.
 
 ### Subnetting
 Subnetting divides one assigned network into smaller internal networks by borrowing bits from the host portion. A **subnet mask** identifies the subnet bits. The network number is found with bitwise AND:
