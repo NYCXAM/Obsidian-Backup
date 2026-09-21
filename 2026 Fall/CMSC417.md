@@ -135,6 +135,70 @@ An LSP contains:
 
 **RFC:** A Request for Comments is an Internet standards publication, primarily produced through the IETF.
 
+## Internet Protocol (IPv4)
+
+**IP:** The network-layer protocol that lets heterogeneous networks operate as one internetwork. IP defines global addressing, datagram format, and packet-handling conventions. Routing protocols choose paths; IP forwards packets along those paths; ICMP reports network errors and signaling information.
+
+### IP service model
+IP provides a connectionless, best-effort datagram service. It does not guarantee delivery, order, uniqueness, or a bounded delay. TCP or an application protocol supplies reliability when needed.
+
+### IPv4 datagram
+An IPv4 datagram has a variable-length header, normally 20 bytes without options, followed by data such as a TCP segment or UDP datagram.
+
+- **Version** and **header length:** Identify IPv4 and the header size.
+- **Total length:** Size of the entire datagram in bytes.
+- **Type of service:** Indicates the desired treatment of traffic, such as real-time versus non-real-time data.
+- **Identifier, flags, fragment offset:** Support fragmentation and reassembly.
+- **TTL:** Maximum remaining router hops. Each router decrements it, preventing packets from looping forever.
+- **Protocol:** Identifies the upper-layer payload, such as TCP or UDP.
+- **Header checksum:** Detects errors in the IP header only.
+- **Source and destination addresses:** 32-bit IPv4 addresses.
+- **Options:** Optional features such as timestamping, route recording, or minimum-MTU discovery.
+
+### Fragmentation and reassembly
+**MTU (Maximum Transmission Unit):** The largest network-layer packet a link can carry. If a router must send a datagram over a link with a smaller MTU, it may split the datagram into fragments. The destination reassembles fragments, keeping fragmentation transparent to higher layers.
+
+Fragments carry the same identifier so the destination can group them. The **more fragments (MF)** flag is 1 on every fragment except the last. The **fragment offset** gives the fragment's data position relative to the original payload in units of 8 bytes. Therefore, every non-final fragment's data length must be a multiple of 8 bytes.
+
+Example: An original 1420-byte datagram with a 20-byte header contains 1400 bytes of data. With MTU 532, each full fragment carries 512 bytes of data:
+
+| Fragment | Data length | Total length | Offset | MF |
+| --- | ---: | ---: | ---: | ---: |
+| 1 | 512 | 532 | 0 | 1 |
+| 2 | 512 | 532 | 64 | 1 |
+| 3 | 376 | 396 | 128 | 0 |
+
+### Hierarchical IPv4 addressing
+An IPv4 address is a globally unique 32-bit identifier for a network interface, written in dotted-quad notation such as `12.34.158.5`.
+
+Addresses have a **network prefix** and a **host portion**. Routers forward based on network prefixes rather than individual hosts, which keeps forwarding tables manageable and lets a network add hosts without changing Internet-wide routes.
+
+**Classful addressing:** The older system used fixed-size Class A (`/8`), B (`/16`), and C (`/24`) blocks. It wasted addresses and increased routing-table size, motivating subnetting and CIDR.
+
+### Subnetting
+Subnetting divides one assigned network into smaller internal networks by borrowing bits from the host portion. A **subnet mask** identifies the subnet bits. The network number is found with bitwise AND:
+
+$$\text{SubnetNum} = \text{SubnetMask} \mathbin{\&} \text{DestinationAddress}$$
+
+A router matches the destination against each `<SubnetNum, SubnetMask, NextHop>` entry. If the matching next hop is an interface, it delivers the datagram directly; otherwise, it forwards it to the next router. A default router handles destinations with no matching entry.
+
+Subnets are usually visible only inside an organization, so its internal structure can remain hidden from the Internet.
+
+### CIDR and prefix forwarding
+**CIDR (Classless Inter-Domain Routing):** Uses a prefix of arbitrary length, written `a.b.c.d/x`, where `x` is the number of prefix bits. For example, `200.23.16.0/23` covers `200.23.16.0` through `200.23.17.255`.
+
+CIDR enables **route aggregation**: contiguous networks can share one shorter prefix advertisement, reducing forwarding-table entries. If several prefixes match a destination, a router uses **longest-prefix matching**, selecting the most specific matching prefix. For example, `201.10.6.17` matches both `201.10.0.0/21` and `201.10.6.0/23`, so the router selects `/23`.
+
+### DHCP
+**Dynamic Host Configuration Protocol (DHCP):** Lets a host obtain network configuration automatically when it joins a network. The server leases addresses from a pool, allowing addresses to be reused and renewed.
+
+1. **DHCPDISCOVER:** A host broadcasts to find a server, often using `255.255.255.255` before it has an address.
+2. **DHCPOFFER:** A server offers an available address.
+3. **DHCPREQUEST:** The host requests the offered address.
+4. **DHCPACK:** The server confirms the lease.
+
+DHCP can also provide the network mask, default gateway (first-hop router), and DNS server. A DHCP relay agent can forward a local broadcast as a unicast request to a DHCP server on another network.
+
 ## Socket Programming in C
 
 **Socket:** An abstraction that lets an application send and receive data through a network, much like a file handle lets a program read and write a file. In C, a socket is represented by a file descriptor (`sockfd`).
