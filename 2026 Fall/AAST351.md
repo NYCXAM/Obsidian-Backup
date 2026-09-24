@@ -56,8 +56,10 @@ Why did Hollywood use yellowface and stereotyping of Asian Americans, constituti
 According to Robert Lee, what is the primary function of the "yellowface" portrayal in popular media?
 5. To mark Asian Americans as fundamentally different and alien
 6. To emphasize the cultural contributions of Asian Americans
-7. TO depict Asians as 
+7. To depict Asians as 
 
 
-
+The power of media:
+- to disenfranchise groups through the negative portrayals
+- to shape the ideas that people hold about different social grouping )consider hall's
 
