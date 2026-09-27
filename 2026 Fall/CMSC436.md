@@ -295,3 +295,149 @@ override fun onCreate(savedInstanceState: Bundle?) {
 - Use **Logcat** to inspect messages. `Log.d`, `Log.i`, `Log.w`, and `Log.e` label messages by level; `Log.w("MainActivity", "message")` uses the first argument as the filter tag.
 - Use Android Studio's debugger to set breakpoints, inspect variables, step through code, and resume execution.
 - Gradle builds the app package. An APK is the distributable Android application file (`.apk`).
+
+## Tic-Tac-Toe: building a view in Kotlin
+
+Build views in code when the number or arrangement of widgets depends on data, or when a repeated structure is easier to generate than to write in XML. The Tic-Tac-Toe example uses a 3 × 3 array of `Button`s inside a `GridLayout`. The activity can pass the completed layout directly to `setContentView(grid)`.
+
+### Game model and board view
+
+The `TicTacToe` model holds a 3 × 3 array of integers and tracks whose turn it is. `0` means an empty cell, `1` means player 1 (X), and `2` means player 2 (O). Its methods play a move, check whether the game is over, report the result, and reset the game. The model has no Android view code. In particular, the model determines whether a cell is already occupied and whether a player has completed a row, column, or diagonal. The buttons merely display the model's state.
+
+The board view mirrors the model's row and column structure:
+
+```kotlin
+val side = TicTacToe.SIDE
+val width = resources.displayMetrics.widthPixels
+val cellSize = width / side
+val grid = GridLayout(this).apply {
+    rowCount = side
+    columnCount = side
+}
+val buttons = Array(side) { Array(side) { Button(this) } }
+
+for (row in 0 until side) {
+    for (col in 0 until side) {
+        grid.addView(buttons[row][col], cellSize, cellSize)
+    }
+}
+setContentView(grid)
+```
+
+`GridLayout(this)` and `Button(this)` receive the activity as their `Context`. `addView` places each button in the grid with the supplied width and height. The example computes square cells from the available width and assumes a portrait layout.
+
+The outer `Array(side)` creates rows; the inner `Array(side)` creates each row's buttons. Keeping `buttons[row][col]` aligned with the model's board makes it straightforward to update the cell that was played. `setContentView(View)` accepts the completed `GridLayout` directly, so this screen does not need an XML layout file.
+
+### Click handling and game state
+
+For a click, implement `View.OnClickListener`, create a listener, and register it with each button. Its `onClick(view)` method receives the button that was clicked as a `View`. In the slide example, one listener handles all nine buttons, so it searches the array to find the matching row and column:
+
+```kotlin
+inner class ButtonHandler : View.OnClickListener {
+    override fun onClick(view: View) {
+        for (row in buttons.indices) {
+            for (col in buttons[row].indices) {
+                if (view === buttons[row][col]) {
+                    update(row, col)
+                    return
+                }
+            }
+        }
+    }
+}
+
+val handler = ButtonHandler()
+for (row in buttons.indices) {
+    for (col in buttons[row].indices) {
+        buttons[row][col].setOnClickListener(handler)
+    }
+}
+```
+
+Since `OnClickListener` has one abstract method, a lambda can combine listener creation and registration. When registering each button inside the construction loop, the lambda captures its row and column, so the handler does not need to search the array:
+
+```kotlin
+buttons[row][col].setOnClickListener {
+    update(row, col)
+}
+```
+
+In `update`, ask the model to play at that position. The slides' `play(row, col)` returns `1` or `2` for a successful move and another value for an unavailable cell. Change the button text only for a successful move. A repeated click on an occupied cell therefore leaves the view unchanged.
+
+```kotlin
+fun update(row: Int, col: Int) {
+    when (ttt.play(row, col)) {
+        1 -> buttons[row][col].text = "X"
+        2 -> buttons[row][col].text = "O"
+    }
+
+    if (ttt.isGameOver()) {
+        status.text = ttt.result()
+        for (buttonRow in buttons) {
+            for (button in buttonRow) button.isEnabled = false
+        }
+        showNewGameDialog()
+    }
+}
+```
+
+`isEnabled = false` prevents further clicks after the game ends. The status text comes from the model's `result()` rather than from a separate winner calculation in the activity.
+
+### Adding a status row
+
+`GridLayout.LayoutParams` specifies where a child goes and how many cells it spans. `GridLayout.spec(start, size)` constructs a row or column span. To put a `TextView` below the 3 × 3 board and across all three columns, add one row to the grid:
+
+```kotlin
+grid.rowCount = side + 1
+val status = TextView(this)
+status.layoutParams = GridLayout.LayoutParams(
+    GridLayout.spec(side, 1),  // fourth row
+    GridLayout.spec(0, side)   // all columns
+)
+status.gravity = Gravity.CENTER
+grid.addView(status)
+```
+
+The first `Spec` controls rows; the second controls columns. Row indices are zero based, so `side` is row 3, immediately after rows 0–2 used by the board. The column span starts at 0 and covers `side` columns. The status view can also set its width, text size, background color, and gravity in Kotlin. Update `status.text` from the model's result and, in the slide example, change its background color when play ends.
+
+### Play-again dialog
+
+At game over, an `AlertDialog.Builder` can ask whether to start another game. Its positive and negative buttons receive click handlers. The positive action resets the model and view; the negative action calls the activity's `finish()` method.
+
+```kotlin
+AlertDialog.Builder(this)
+    .setMessage("Play again?")
+    .setPositiveButton("Yes") { _, _ -> resetGameAndView() }
+    .setNegativeButton("No") { _, _ -> finish() }
+    .show()
+```
+
+Here `resetGameAndView()` is a helper for the model reset and view updates described above:
+
+```kotlin
+fun resetGameAndView() {
+    ttt.resetGame()
+    for (buttonRow in buttons) {
+        for (button in buttonRow) {
+            button.text = ""
+            button.isEnabled = true
+        }
+    }
+    status.setBackgroundColor(Color.GREEN)
+    status.text = ttt.result()
+}
+```
+
+The slides also implement `DialogInterface.OnClickListener` as an inner class. Its `onClick(dialog, which)` method receives a button identifier: `DialogInterface.BUTTON_POSITIVE` for Yes and `BUTTON_NEGATIVE` for No (shown as `-1` and `-2` in the slides). In that form, `this@MainActivity` refers to the enclosing activity from inside the inner class, allowing it to call `finish()`.
+
+### Separating the view from the controller
+
+The final version moves board construction and display operations into `ButtonGridAndTextView`, a `GridLayout` subclass. Its constructor receives a `Context`, width, board size, and `View.OnClickListener`. It builds the buttons, registers the supplied listener on each button, and adds the status `TextView`. The class exposes methods to set button text, set status text and color, clear the board, enable or disable buttons, and identify which button was clicked.
+
+| Part | Owns | Example responsibility |
+| --- | --- | --- |
+| `TicTacToe` model | Board values and turn | Decide whether `play(row, col)` is valid; report game over |
+| `ButtonGridAndTextView` view | Buttons, status label, layout | Display a mark or status; identify a clicked button |
+| `MainActivity` controller | References to model and view | Handle clicks, ask the model to play, update the view |
+
+`MainActivity` remains the controller: it owns both the `TicTacToe` model and the custom view, sends moves to the model, then updates the view through the view's methods. The view uses its own board-size parameter instead of `TicTacToe.SIDE`, so it does not depend on the game model. With the shared listener used in this version, the controller can ask the view whether a clicked `Button` matches a given row and column. A possible refinement from the slides is a custom `AppCompatButton` that stores its row and column, avoiding a search through the grid.
