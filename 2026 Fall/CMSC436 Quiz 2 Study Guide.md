@@ -189,36 +189,36 @@ buttons[row][col].isEnabled = false
 **18. Complete one Kotlin line.** Make a `GridLayout.Spec` for a status view starting at row `TicTacToe.SIDE` and spanning exactly one row.
 
 ```kotlin
-val rowSpec = GridLayout.spec(TicTacToe.side, 3)
+val rowSpec = GridLayout.spec(TicTacToe.side, 1)
 ```
 
 **19. Multiple choice.** Let `SIDE` be the number of buttons per row. The status view must span all `SIDE` columns, starting at column zero. Which specification does that?
 
 A. `GridLayout.spec(SIDE, 0)`  
-B. `GridLayout.spec(0, SIDE)`  
+==B. `GridLayout.spec(0, SIDE)`==  
 C. `GridLayout.spec(1, SIDE + 1)`  
 D. `GridLayout.spec(SIDE, 1)`
 
-**20. Short answer.** In the type name `GridLayout.Spec`, which class contains the nested `Spec` type?
+**20. Short answer.** In the type name `GridLayout.Spec`, which class contains the nested `Spec` type? GridLayout
 
 ### Topic 6: Replay dialog
 
 **21. Multiple choice.** Which object is used to set a dialog's title, message, and YES/NO buttons before showing it?
 
 A. `GridLayout.Spec`  
-B. `AlertDialog.Builder`  
+==B. `AlertDialog.Builder`==  
 C. `DisplayMetrics`  
 D. `ViewGroup`
 
-**22. Short answer.** In the slide example's dialog listener, what `id` denotes the positive YES button?
+**22. Short answer.** In the slide example's dialog listener, what `id` denotes the positive YES button? ==-1==
 
 **23. Complete one Kotlin line.** From inside the `PlayDialog` inner class, finish the enclosing activity.
 
 ```kotlin
-__________.finish()
+this@MainActicity.finish()
 ```
 
-**24. Short answer.** Which listener interface handles the replay dialog's YES and NO button clicks? Give its qualified name.
+**24. Short answer.** Which listener interface handles the replay dialog's YES and NO button clicks? Give its qualified name. ==DialogInterface.OnClickListener==
 
 ### Topic 7: Reusable View and Controller
 
@@ -227,7 +227,7 @@ __________.finish()
 **26. Multiple choice.** Why does `ButtonGridAndTextView` receive a side length rather than using `TicTacToe.SIDE` internally?
 
 A. `GridLayout` forbids constants.  
-B. The View can work with a different Model or grid size.  
+==B. The View can work with a different Model or grid size.==  
 C. The Model must draw the buttons.  
 D. Android cannot create a 3 × 3 grid.
 
@@ -239,16 +239,16 @@ D. Android cannot create a 3 × 3 grid.
 
 #### Topic 8: MVC and widgets
 
-**29. Short answer.** Which file contains the calculations for the tip and total but no GUI code? Give the filename.
+**29. Short answer.** Which file contains the calculations for the tip and total but no GUI code? Give the filename. ==TipCalculator.kt==
 
 **30. Multiple choice.** A user types the bill in one widget; the calculated total appears in another. Which pair fits those roles?
 
 A. `TextView` input, `EditText` output  
-B. `EditText` input, `TextView` output  
+==B. `EditText` input, `TextView` output==  
 C. `Button` input, `RelativeLayout` output  
 D. `GridLayout` input, `Button` output
 
-**31. Yes or no.** Should `TipCalculator` directly call `findViewById` to update the displayed tip?
+**31. Yes or no.** Should `TipCalculator` directly call `findViewById` to update the displayed tip? ==No==
 
 **32. Short answer.** Which app layer passes the user's values to the Model and puts the results into the View?
 
@@ -257,12 +257,12 @@ D. `GridLayout` input, `Button` output
 **33. Complete one XML attribute.** Give a new bill field the ID `amount_bill`.
 
 ```xml
-android:id="__________"
+android:id="@+id/amount_bill"
 ```
 
 **34. Multiple choice.** A bill field must sit to the right of a label whose ID is `label_bill`. Which attribute expresses that rule inside the `EditText`?
 
-A. `android:layout_toRightOf="@id/label_bill"`  
+==A. `android:layout_toRightOf="@id/label_bill"`==  
 B. `android:layout_below="@id/label_bill"`  
 C. `android:layout_width="@id/label_bill"`  
 D. `android:hint="@id/label_bill"`
