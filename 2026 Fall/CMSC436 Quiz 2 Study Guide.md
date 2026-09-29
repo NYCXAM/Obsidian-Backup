@@ -159,28 +159,28 @@ A. `handler.addView(buttons[0][2])`
 C. `buttons[0][2].onClick(handler)`  
 D. `setContentView(handler)`
 
-**11. Yes or no.** Can the click `View` parameter be left out of a listener lambda when the body only uses the captured `row` and `col` values?
+**11. Yes or no.** Can the click `View` parameter be left out of a listener lambda when the body only uses the captured `row` and `col` values? ==No==
 
-**12. Short answer.** In the explicit listener version, what is compared with the `view` argument to identify the clicked board position?
+**12. Short answer.** In the explicit listener version, what is compared with the `view` argument to identify the clicked board position? 
 
 ### Topic 4: Rules and updates
 
 **13. Multiple choice.** `ttt.play(row, col)` returns `2`. What should the controller put in that button?
 
 A. `X`  
-B. `O`  
+==B. `O`==  
 C. `2`  
 D. An empty string
 
-**14. Yes or no.** If `ttt.isGameOver()` becomes true, should the controller disable the buttons and display `ttt.result()` in the status view?
+**14. Yes or no.** If `ttt.isGameOver()` becomes true, should the controller disable the buttons and display `ttt.result()` in the status view? ==Yes==
 
 **15. Complete one Kotlin line.** Disable `buttons[row][col]` using the property shown in the slides.
 
 ```kotlin
-buttons[row][col].__________ = false
+buttons[row][col].isEnabled = false
 ```
 
-**16. Short answer.** The user starts a new game. Which Model method must run before fresh moves follow the new game's rules?
+**16. Short answer.** The user starts a new game. Which Model method must run before fresh moves follow the new game's rules? resetGame()
 
 ### Topic 5: Status view and spans
 
