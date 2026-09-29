@@ -122,7 +122,7 @@ D. The game has ended.
 
 **3. Yes or no.** Should the View decide whether a move completes a winning line? ==No==
 
-**4. Short answer.** A click reaches the controller. Name the layer it should consult before changing a button label. ==onClickListener==
+**4. Short answer.** A click reaches the controller. Name the layer it should consult before changing a button label. ==Model==
 
 ### Topic 2: Building the grid
 
@@ -136,7 +136,7 @@ D. `Button` has no constructor parameter.
 **6. Complete one Kotlin line.** Set `gridLayout` to have `TicTacToe.SIDE` columns.
 
 ```kotlin
-gridLayout.__________ = TicTacToe.SIDE
+gridLayout.columnCount = TicTacToe.SIDE
 ```
 
 **7. Short answer.** What property after `Resources.getSystem().displayMetrics.` gives the screen width in pixels? ==widthPixel==
@@ -159,9 +159,9 @@ A. `handler.addView(buttons[0][2])`
 C. `buttons[0][2].onClick(handler)`  
 D. `setContentView(handler)`
 
-**11. Yes or no.** Can the click `View` parameter be left out of a listener lambda when the body only uses the captured `row` and `col` values? ==No==
+**11. Yes or no.** Can the click `View` parameter be left out of a listener lambda when the body only uses the captured `row` and `col` values? ==Yes==
 
-**12. Short answer.** In the explicit listener version, what is compared with the `view` argument to identify the clicked board position? 
+**12. Short answer.** In the explicit listener version, what is compared with the `view` argument to identify the clicked board position? ==button\[row]\[col]==
 
 ### Topic 4: Rules and updates
 
@@ -180,16 +180,16 @@ D. An empty string
 buttons[row][col].isEnabled = false
 ```
 
-**16. Short answer.** The user starts a new game. Which Model method must run before fresh moves follow the new game's rules? resetGame()
+**16. Short answer.** The user starts a new game. Which Model method must run before fresh moves follow the new game's rules? ==resetGame()==
 
 ### Topic 5: Status view and spans
 
-**17. Short answer.** For a board with `TicTacToe.SIDE` button rows, what should `gridLayout.rowCount` be after adding one status row? Write an expression using `TicTacToe.SIDE`.
+**17. Short answer.** For a board with `TicTacToe.SIDE` button rows, what should `gridLayout.rowCount` be after adding one status row? Write an expression using `TicTacToe.SIDE`. ==TicTacToe.SIDE + 1==
 
 **18. Complete one Kotlin line.** Make a `GridLayout.Spec` for a status view starting at row `TicTacToe.SIDE` and spanning exactly one row.
 
 ```kotlin
-val rowSpec = GridLayout.spec(__________, __________)
+val rowSpec = GridLayout.spec(TicTacToe.side, 3)
 ```
 
 **19. Multiple choice.** Let `SIDE` be the number of buttons per row. The status view must span all `SIDE` columns, starting at column zero. Which specification does that?
