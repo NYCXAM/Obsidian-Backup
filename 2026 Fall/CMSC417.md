@@ -222,7 +222,99 @@ CIDR enables **route aggregation**: contiguous networks can share one shorter pr
 3. **DHCPREQUEST:** The host requests the offered address.
 4. **DHCPACK:** The server confirms the lease.
 
-DHCP can also provide the network mask, default gateway (first-hop router), and DNS server. A DHCP relay agent can forward a local broadcast as a unicast request to a DHCP server on another network.
+DHCP can also provide the network mask, default gateway (first-hop router), and DNS server. Because routers normally do not forward local broadcasts, each subnet needs access to a DHCP server or **DHCP relay agent**. A relay forwards the client's broadcast as a unicast request to a server on another network, then forwards the server's response back to the client.
+
+### Private addresses and NAT
+**Private IPv4 addresses:** Addresses reserved for internal networks. Different organizations can reuse them, so they are not globally unique or routable on the public Internet.
+
+| Private block | Address range |
+| --- | --- |
+| `10.0.0.0/8` | `10.0.0.0` through `10.255.255.255` |
+| `172.16.0.0/12` | `172.16.0.0` through `172.31.255.255` |
+| `192.168.0.0/16` | `192.168.0.0` through `192.168.255.255` |
+
+**NAT (Network Address Translation):** Changes IP addresses as packets cross a network boundary. The address-and-port translation shown in the slides lets many private hosts share one public IPv4 address, using different ports to distinguish their traffic.
+
+Example: A host at `10.0.0.1:3345` sends to a web server at `128.119.40.186:80`:
+
+1. The NAT router replaces the outgoing **source** with its public endpoint, `138.76.29.7:5001`.
+2. It records a mapping between `10.0.0.1:3345` and `138.76.29.7:5001` in its translation table.
+3. When a reply arrives at `138.76.29.7:5001`, it replaces the **destination** with `10.0.0.1:3345` and forwards it internally.
+
+NAT conserves public addresses and allows internal addressing to remain unchanged when the ISP changes. Ports are 16 bits, providing many possible mappings, but practical capacity also depends on the router and its mapping rules.
+
+**Tradeoff:** NAT changes packets and requires state inside the network, weakening the end-to-end model. An outside host normally cannot initiate contact with a private host without a configured mapping or NAT traversal, complicating servers and peer-to-peer applications. NAT alone does not guarantee security.
+
+### MAC addresses and ARP
+**IP address:** A hierarchical network-layer address used to route a packet across networks. Its prefix depends on the network the interface joins.
+
+**MAC address:** A link-layer address used to deliver a frame on the current LAN. Ethernet MAC addresses are normally 48 bits, written as six hexadecimal bytes, such as `1A-2F-BB-76-09-AD`. They are flat addresses, typically assigned by a manufacturer from allocated address blocks, and can also be changed in software.
+
+**ARP (Address Resolution Protocol):** Finds the MAC address corresponding to an IPv4 address on the local link.
+
+1. A checks its **ARP cache** for the target IP address.
+2. If no entry exists, A broadcasts an ARP request to `FF:FF:FF:FF:FF:FF`, asking which interface owns that IP. The request includes A's IP and MAC addresses.
+3. The owner replies directly to A with its MAC address. A caches the mapping and can send frames to it.
+
+Cache entries are **soft state**: they expire unless refreshed. The cache stores `<IP address, MAC address, expiration>` and ARP learns mappings automatically.
+
+**Local versus remote destination:** For a host on the same subnet, resolve that host's MAC address. For a remote destination, resolve the **next-hop router's MAC address**. The frame goes to the router, while the IP packet still names the final destination. Each router constructs a new link-layer frame for its next hop.
+
+An ARP message contains the hardware/protocol types and address lengths, a request/reply operation, and the sender's and target's MAC/IP addresses.
+
+### ICMP, ping, and traceroute
+**ICMP (Internet Control Message Protocol):** Carries network-layer error reports and diagnostic/control messages inside IP packets. It informs the source about a problem rather than repairing it or guaranteeing delivery.
+
+- **Destination unreachable:** A network, host, protocol, or port cannot be reached.
+- **Time exceeded:** A packet's TTL reaches zero, or fragment reassembly takes too long.
+- **Redirect:** A router informs a host that a better first-hop router is available.
+- **Echo request/reply:** Diagnostic messages used by `ping`.
+
+The **type** identifies the message category and the **code** gives a more specific reason. In ICMPv4, echo request is type 8, echo reply is type 0, destination unreachable is type 3, and time exceeded is type 11.
+
+**Ping:** Sends echo requests and measures reply round-trip time and loss. No reply does not necessarily mean the host is down, since a network may filter ICMP.
+
+**Traceroute:** Sends probes with increasing TTL values: 1, 2, 3, and so on. Each router where a probe's TTL expires returns an ICMP time-exceeded message, revealing successive hops and their round-trip times. The final response depends on the probe type, such as an echo reply or a UDP port-unreachable message.
+
+### Tunneling and VPNs
+**Tunnel:** Carries an entire original packet inside another packet, creating a logical link across an intermediate network.
+
+At gateway A, the original packet becomes the payload of an **outer IP packet** addressed from gateway A to gateway B. Intermediate routers forward using the outer header. Gateway B removes that header and forwards the original packet using its unchanged **inner** addresses.
+
+**VPN (Virtual Private Network):** Connects private hosts or networks across shared infrastructure. A secure VPN encrypts and authenticates tunneled traffic between its endpoints, allowing private communication across an untrusted network. Encapsulation by itself does not provide encryption.
+
+Tunnels also carry protocols or multicast traffic through networks that do not directly support them. Costs include extra headers, processing, configuration, and a reduced effective MTU, which can cause fragmentation or require smaller packets.
+
+## IPv6
+
+**IPv6:** Uses 128-bit addresses rather than IPv4's 32 bits, providing a much larger address space. Addresses use colon-separated hexadecimal groups, such as `2001:db8::1`. `::` abbreviates one consecutive run of zero groups.
+
+### IPv6 packet header
+IPv6 has a **fixed 40-byte base header**. Optional information goes in extension headers rather than making the base header variable-length.
+
+- **Version:** Identifies IPv6.
+- **Traffic class and flow label:** Support traffic classification and identification of packets belonging to a flow.
+- **Payload length:** Number of bytes after the base header, including extension headers.
+- **Next header:** Identifies the following extension header or upper-layer protocol, such as TCP or UDP.
+- **Hop limit:** The equivalent of IPv4 TTL, decremented at each router.
+- **Source and destination:** 128-bit addresses.
+
+**Differences from IPv4:** No base-header checksum, reducing per-hop checksum work. Error detection is handled at other layers. The base header also has no fragmentation fields: IPv6 routers do not fragment packets. If needed, the source fragments using a Fragment extension header, and the destination reassembles them.
+
+### Address delivery types
+
+| Type | Delivery |
+| --- | --- |
+| **Unicast** | One specific interface |
+| **Multicast** | Interfaces belonging to a selected group |
+| **Anycast** | One interface from a group sharing an address, usually the nearest according to routing cost |
+| **Broadcast** | All interfaces on a local network in IPv4. IPv6 uses multicast instead of broadcast. |
+
+### IPv4 and IPv6 coexistence
+IPv4 and IPv6 headers are incompatible, so an IPv6 packet cannot simply pass through an IPv4-only router as a native packet.
+
+- **Translation:** Converts between IPv4 and IPv6 packets. Some IPv6 information, such as its flow label, has no equivalent IPv4 field and may be lost.
+- **Tunneling:** Wraps the complete IPv6 packet inside an IPv4 packet between tunnel endpoints. IPv4 routers use the outer IPv4 header. The exit removes it, preserving the original IPv6 header and payload.
 
 ## Socket Programming in C
 
