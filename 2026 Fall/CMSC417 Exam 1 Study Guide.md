@@ -272,7 +272,7 @@ An **LSP (Link-State Packet)** contains:
 1. If there is no stored LSP for that origin, accept it.
 2. Otherwise compare versions. Accept newer information; ignore older or duplicate copies for database replacement and re-flooding.
 3. Store accepted information and forward it to other neighbors, excluding the incoming neighbor.
-4. Recompute shortest paths when the topology information changes.
+4. Recompute shortest paths when the topology information changes.x
 5. Age stored information and remove it when its lifetime expires. Originators periodically refresh their advertisements.
 
 **Duplicate example:** B receives the same A-originated LSP through C and D. It accepts the first new copy. The second copy with the same sequence number does not start another flooding wave. Version checks prevent uncontrolled circulation.
