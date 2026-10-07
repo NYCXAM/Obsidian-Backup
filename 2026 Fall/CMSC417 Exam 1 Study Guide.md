@@ -702,9 +702,9 @@ For Question 10, each child carries 256 bytes. Offsets are **100 and 132**. Both
 
 ## 14. Final readiness checklist
 
-- [ ] I can explain why circuit capacity can be idle without claiming the whole physical link is blocked.
-- [ ] I distinguish forwarding, routing, bandwidth, throughput, transmission delay, and propagation delay.
-- [ ] I can calculate delays and bottleneck throughput with correct units.
+- [x] I can explain why circuit capacity can be idle without claiming the whole physical link is blocked.
+- [x] I distinguish forwarding, routing, bandwidth, throughput, transmission delay, and propagation delay.
+- [x] I can calculate delays and bottleneck throughput with correct units.
 - [ ] I can name the five Internet layers and the two additional OSI layers.
 - [ ] I can compute a DV update using each neighbor's advertised cost plus my direct-link cost.
 - [ ] I can explain periodic updates, triggered updates, and the value of retaining neighbor vectors.
