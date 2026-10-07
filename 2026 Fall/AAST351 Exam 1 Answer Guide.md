@@ -104,11 +104,11 @@ These describe positions toward a message, not permanent personality types. [Hal
 
 ### 23. How did nineteenth-century commentators describe Chinese music?
 
-**Provisional:** Euro-American commentators often dismissed it as noise, strange, shrill, or lacking qualities they associated with proper music. The key distinction is between unfamiliar conventions and supposedly inferior people: their descriptions turned the first into evidence of the second. **The exact assigned Moon chapter is needed to verify her specific examples and terminology.** [Moon, *Yellowface*, publisher description](https://www.rutgersuniversitypress.org/yellowface/9780813583631).
+**They frequently dismissed Chinese music as noise, a racket, or an unpleasant din.** Some described singing as unnaturally high or animal-like and denied that the performances qualified as music. Moon shows how these descriptions converted unfamiliar conventions into supposed evidence of racial inferiority. She also notes exceptions; Western responses were not completely uniform. [Moon, *Yellowface*, Chapter 1, pp. 10–17, book transcription](https://dokumen.pub/yellowface-creating-the-chinese-in-american-popular-music-and-performance-1850s-1920s-9780813541228.html).
 
 ### 24. How does Moon connect musical judgments to Orientalism?
 
-**Provisional application:** Treating European musical conventions as universal makes Chinese difference appear deficient. This reproduces an Orientalist hierarchy in which Western observers define civilization and classify others. Music criticism can therefore contribute to racial exclusion, rather than merely express taste. Moon's publisher confirms that the book analyzes music, performance, and Chinese racial stereotyping; her assigned chapter is needed for its detailed argument. [Moon, publisher](https://www.rutgersuniversitypress.org/yellowface/9780813583631).
+**The music/noise distinction organizes a hierarchy of civilization and race.** Western commentators treated their own conventions as universal standards, then interpreted Chinese departures from those standards as inferiority. Moon connects these judgments to scientific racism and anti-Chinese policies. Applied to Said, this is Orientalism because Western observers claim authority to classify the East and make domination seem reasonable. [Moon, introduction and Chapter 1](https://dokumen.pub/yellowface-creating-the-chinese-in-american-popular-music-and-performance-1850s-1920s-9780813541228.html).
 
 ### 25. Why yellowface and stereotyping, and what do they reveal politically?
 
@@ -154,7 +154,7 @@ This repeats Question 21. **Use the same mechanisms, then connect them:** white 
 
 ### 35. Does globalization bring people together or exoticize differences?
 
-**Possible argument: both; connection does not automatically produce equality or understanding.** Applying the passage supplied in the study guide, a globally distributed film can make a culture familiar while reducing it to spectacle. Translation, dialogue, and self-representation can also challenge stereotypes. Ask who selects the images, whose perspective explains them, and whether people appear as complex subjects. The answer depends on the terms of contact, not simply its quantity. **This is an argument responding to the supplied quotation.**
+**Possible argument: both; connection does not automatically produce equality or understanding.** Ono and Pham warn that rapid access can create an illusion of knowledge while concealing missing context. Applying this, a globally distributed film can make a culture familiar while reducing it to spectacle. Translation, dialogue, and self-representation can also challenge stereotypes. Ask who selects the images and whether people appear as complex subjects. The answer depends on the terms of contact, not simply its quantity. [Ono and Pham, introduction preview](https://www.perlego.com/book/1536635/asian-americans-and-the-media-media-and-minorities-pdf).
 
 ## Week 5 — Yellowface, National Belonging, and Asian American Women
 
@@ -205,7 +205,7 @@ These are historical constructions, not traits of Asian people. [Lee, introducti
 
 **Both excluded Asian applicants, but the Court shifted its reasoning.** In *Ozawa v. United States* (1922), Ozawa emphasized light skin and American assimilation. The Court treated statutory whiteness as Caucasian racial classification, excluding Japanese people. In *United States v. Bhagat Singh Thind* (1923), Thind invoked the classification of high-caste Indians as Caucasian. The Court instead relied on the ordinary understanding of white people and excluded him.
 
-**Analytical significance:** whiteness functioned as a flexible legal boundary protecting racial membership, rather than a consistent scientific or skin-color standard. The guide's 1922 citation belongs to *Ozawa*; *Thind* was decided in 1923. [Official *Ozawa* opinion](https://www.loc.gov/item/usrep260178/); [official *Thind* opinion](https://www.loc.gov/item/usrep261204/).
+**Analytical significance:** whiteness functioned as a flexible legal boundary protecting racial membership, rather than a consistent scientific or skin-color standard. The guide's 1922 citation belongs to *Ozawa*; *Thind* was decided in 1923. [Official *Ozawa* opinion PDF](https://tile.loc.gov/storage-services/service/ll/usrep/usrep260/usrep260178/usrep260178.pdf); [official *Thind* opinion PDF](https://tile.loc.gov/storage-services/service/ll/usrep/usrep261/usrep261204/usrep261204.pdf).
 
 ### 45. How does *Slaying the Dragon* connect colonialism and portrayals of Asian women?
 
@@ -245,7 +245,7 @@ These are historical constructions, not traits of Asian people. [Lee, introducti
 
 ### 6. How does the Dragon Lady stereotype depict Asian American women?
 
-**As powerful, calculating, sexually manipulative, and dangerous.** Her agency becomes a threat to Western men rather than evidence of ordinary individuality. The stereotype makes an Asian woman's strength seem inherently sinister. [Prasso, book description](https://books.google.com/books/about/The_Asian_Mystique.html?id=0elZBgAAQBAJ).
+**As powerful, calculating, sexually manipulative, and dangerous.** Her agency becomes a threat to Western men rather than evidence of ordinary individuality. The stereotype makes an Asian woman's strength seem inherently sinister. [Prasso, author’s book description](https://sheridanprasso.com/books/).
 
 ### 7. Why does the Dragon Lady image persist?
 
@@ -253,7 +253,7 @@ These are historical constructions, not traits of Asian people. [Lee, introducti
 
 ### 8. What is the Lotus Blossom, and how does it contrast with the Dragon Lady?
 
-**The Lotus Blossom is passive, delicate, obedient, and self-sacrificing; the Dragon Lady is assertive, controlling, and threatening.** They are opposing fantasies, but both define Asian women through others' desires and deny complexity. **Concept verified; Prasso's exact chapter wording remains unchecked.** [Asian Women United companion guide, polarized portrayals](https://www.wmm.com/uploads/2019/02/dragon_study.pdf); [Prasso book description](https://books.google.com/books/about/The_Asian_Mystique.html?id=0elZBgAAQBAJ).
+**The Lotus Blossom is passive, delicate, obedient, and self-sacrificing; the Dragon Lady is assertive, controlling, and threatening.** They are opposing fantasies, but both define Asian women through others' desires and deny complexity. **Concept verified; Prasso's exact chapter wording remains unchecked.** [Asian Women United companion guide, polarized portrayals](https://www.wmm.com/uploads/2019/02/dragon_study.pdf); [Prasso, author’s book description](https://sheridanprasso.com/books/).
 
 ### 9. What does *Picturing Oriental Girls* show about representation?
 
@@ -261,16 +261,15 @@ These are historical constructions, not traits of Asian people. [Lee, introducti
 
 ## Sources found and materials still needed
 
-**Assigned or closely matching texts found online:** Said's introduction; Kellner/Durham's introduction; Gramsci's selections; Hall's “Encoding/Decoding”; a full transcription of Feng's article; a full scan of Ono/Pham's Yellow Peril chapter; Lee's introduction transcription; Ito's article. Some are university-hosted copies; Feng and Lee are third-party transcriptions and can contain transcription errors. Online edition page numbers may differ from course PDFs.
+**Assigned or closely matching texts found online:** Said's introduction; Kellner/Durham's introduction; Gramsci's selections; Hall's “Encoding/Decoding”; a full transcription of Feng's article; a full scan of Ono/Pham's Yellow Peril chapter and a preview of their introduction; Lee's introduction transcription; Ito's article; Moon's book text. Some are university-hosted copies; Feng, Lee, and Moon are third-party transcriptions and can contain transcription errors. Online edition page numbers may differ from course PDFs.
 
 **Additional primary materials found:** the Supreme Court opinions, Prasso's recorded interview, Asian Women United's companion guide, and an interview about Soe's production. Film catalog and plot descriptions supplement these; they do not replace viewing the films.
 
 **Most useful uploads for a fully course-specific revision:**
 
 1. **Sheridan Prasso's assigned chapter**, especially for Week 6 Questions 3, 5, and 7.
-2. **Krystyn R. Moon's assigned chapter**, for Questions 23–24.
-3. **Dhingra and Rodriguez, “Asian Americans as racial, ethnic, gender, and sexual minorities,”** for Question 27 and the framing of Question 28.
-4. **Ono and Pham's introduction**, if separately assigned, to check their precise definition of media racial hegemony and the page-14 passage in Questions 34–35.
-5. Relevant **film transcripts, captions, or class notes** if you want precise scene/interview citations for *Slaying the Dragon* and *Picturing Oriental Girls*.
+2. **Dhingra and Rodriguez, “Asian Americans as racial, ethnic, gender, and sexual minorities,”** for Question 27 and the framing of Question 28.
+3. **Ono and Pham's complete introduction**, if separately assigned, to check their precise definition of media racial hegemony in Question 34; the globalization passage for Question 35 was found in the preview.
+4. Relevant **film transcripts, captions, or class notes** if you want precise scene/interview citations for *Slaying the Dragon* and *Picturing Oriental Girls*.
 
 **Reading ambiguity to resolve:** Question 19's phrase “critique of representation” is not explicitly defined in the accessible Feng article. Question 13 may refer to a Hall lecture/video or excerpt beyond “Encoding/Decoding.” Your syllabus or reading list would identify the exact intended sources.
