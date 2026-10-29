@@ -777,3 +777,186 @@ To allow the app to load web pages, add the `INTERNET` permission inside `<manif
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
 ```
+
+---
+
+## 8. Custom Graphics, Animation & Sound (`6-GraphicsAndAnimation`)
+
+*Source: `6-GraphicsAndAnimation.pptx`, slides 1–120. This section follows the Duck Hunting app, independently of the earlier midterm scope notes.*
+
+### Custom View, Canvas, and Paint
+
+**`GameView : View`** handles drawing. Override `onDraw(canvas: Canvas)`; Android supplies the `Canvas` when the view needs to render. **Canvas describes what/where to draw; Paint describes how to draw**, including color, stroke width, fill/stroke style, text size, and antialiasing.
+
+```kotlin
+class GameView(context: Context) : View(context) {
+    private val paint = Paint().apply {
+        color = Color.BLACK
+        strokeWidth = 20f
+        style = Paint.Style.FILL
+        isAntiAlias = true
+    }
+
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        canvas.drawCircle(0f, height.toFloat(), height / 5f, paint)
+        canvas.drawLine(0f, height.toFloat(), height / 5f,
+            height - height / 5f, paint)
+    }
+}
+// In the Activity: setContentView(GameView(this))
+```
+
+- The custom view constructor must call the `View` constructor with a `Context`. The lecture also accepts width/height constructor parameters to size the game.
+- **Coordinates:** Origin `(0,0)` is the view's upper-left corner; x increases right, y increases downward. Drawing coordinates are pixels; many Canvas methods take `Float` values.
+- A circle centered at `(0, height)` lies at the bottom-left corner, so only its upper-right quarter is visible. A line from that point forms the cannon barrel.
+- Other Canvas methods include `drawRect`, `drawOval`, `drawArc`, `drawText`, `drawLines`, and `drawBitmap`. Configure `Paint` before drawing and reuse it rather than recreating it each frame.
+
+**Available dimensions:** The lecture reads `resources.displayMetrics.widthPixels/heightPixels` and scales game objects relative to the screen. For actual drawing, distinguish full-screen size from the custom view's measured `width/height` and system-bar insets; a pixel coordinate from one space is not automatically valid in another.
+
+To hide system bars in the lecture's full-screen game:
+
+```kotlin
+WindowCompat.getInsetsController(window, window.decorView)
+    .hide(WindowInsetsCompat.Type.systemBars())
+```
+
+If retaining the status bar, the lecture uses `window.decorView.getWindowVisibleDisplayFrame(rect)` and `rect.top` after layout, in `onWindowFocusChanged`, because measurements in `onCreate` may not be ready. Use the intended landscape orientation when calculating dimensions; emulator-specific sizes are not universal constants.
+
+### Bitmap resources and proportional scaling
+
+Put `duck.png` in `res/drawable/`, then decode it once:
+
+```kotlin
+val duck = BitmapFactory.decodeResource(resources, R.drawable.duck)
+val scale = viewWidth.toFloat() / (5f * duck.width)
+val duckHeight = (duck.height * scale).toInt()
+val duckRect = Rect(viewWidth - viewWidth / 5, 0, viewWidth, duckHeight)
+// Inside onDraw:
+canvas.drawBitmap(duck, null, duckRect, paint)
+```
+
+- **`Rect(left, top, right, bottom)`** takes edge coordinates, not `(x, y, width, height)`. Width is `right-left`; height is `bottom-top`.
+- `drawBitmap(bitmap, src, dest, paint)`: `src` selects a source crop; `null` uses the entire image. `dest` positions and scales it on the Canvas.
+- In this example, the drawn width is one-fifth of the view width. Multiplying both original image dimensions by the **same scale** preserves its aspect ratio; arbitrary width/height stretching distorts it.
+- `bitmap.width/height` report image dimensions. `getPixel(x,y)` reads a pixel color; `setPixel(x,y,color)` writes one when the bitmap is mutable.
+
+### MVC and the timer-driven game loop
+
+| Component | Responsibility in Duck Hunting |
+| --- | --- |
+| `Game` model | Cannon position/angle; bullet position, speed, firing state; duck rectangle, speed, alive/shot state; movement and collision logic |
+| `GameView` | Read the model and draw the cannon, bullet, and current duck image |
+| `MainActivity` controller | Set up the shared model/view, handle input, and coordinate updates |
+
+The Activity and GameView must reference the **same `Game` object**, not separate game states. The lecture creates the model through GameView and exposes it to the Activity. Dimensions, hunting bounds, speeds, and the update interval are configured relative to the available view size.
+
+**One tick:** Update model state, then request a redraw. `Timer` schedules repeated work; `TimerTask` is abstract, so implement `run()`:
+
+```kotlin
+class GameTimerTask(private val activity: MainActivity) : TimerTask() {
+    override fun run() {
+        activity.updateModel()
+        activity.updateView()
+    }
+}
+
+// Activity setup; deltaTimeMs is a Long, for example 50L:
+val gameTimer = Timer()
+gameTimer.schedule(GameTimerTask(this), 0L, deltaTimeMs)
+
+// Activity method:
+fun updateView() {
+    gameView.postInvalidate()
+}
+```
+
+- `schedule(task, delay, period)` uses **milliseconds**. A 100 ms period targets 10 updates/s; 50 ms targets 20 updates/s. Movement uses speed and elapsed/update time in matching units.
+- **Do not call `onDraw` yourself.** `postInvalidate()` requests a future UI-thread redraw; it is not an immediate synchronous call or a guarantee of exactly one rendered frame per tick. `invalidate()` is the UI-thread form. [View API](https://developer.android.com/reference/android/view/View#invalidate())
+- `TimerTask.run()` runs on a timer thread. Posting a redraw does not make simultaneous model updates automatically thread-safe; coordinate model access with drawing and touch handling. Stop/cancel the timer when the game is no longer active.
+- The update loop moves the duck, restarts it when off-screen, and moves a fired bullet or reloads it when it leaves the hunting area. `onDraw` reads the resulting positions instead of containing all game rules.
+
+### Sprite frames, cannon geometry, and bullets
+
+**Sprite animation:** Three duck images can form a four-frame wing cycle `0, 1, 2, 1`. Decode resources into an `Array<Bitmap>` once, draw `ducks[duckFrame]`, and cycle the index:
+
+```kotlin
+canvas.drawBitmap(ducks[duckFrame], null, game.getDuckRect(), paint)
+duckFrame = (duckFrame + 1) % ducks.size
+```
+
+This is the lecture's frame-cycling approach. Duck position changes and image changes are separate: the model moves its rectangle while the image sequence animates its wings.
+
+**Cannon endpoint:** With center `(cx,cy)`, barrel length $L$, and angle $\theta$ measured upward from the positive x-axis:
+
+$$endX=cx+L\cos\theta,\qquad endY=cy-L\sin\theta$$
+
+Subtract the vertical component because screen y increases downward. Kotlin/Java trigonometric functions use **radians**.
+
+To aim at a touch in the same coordinate space as the cannon:
+
+```kotlin
+val dx = event.x - game.getCannonCenter().x
+val dy = game.getCannonCenter().y - event.y
+val angle = Math.atan2(dy.toDouble(), dx.toDouble()).toFloat()
+game.setCannonAngle(angle)
+```
+
+`atan2(dy, dx)` handles quadrants and vertical aiming without dividing by zero. Forward events in the GameView's coordinate space, or convert Activity/screen coordinates before using this calculation.
+
+**Bullet state:** Fire only when no bullet is already active. Keep its firing angle in the model, advance its position each tick, and draw it with `drawCircle` using model coordinates/radius. Reload when off-screen or after a hit; firing and moving are different operations.
+
+### GestureDetector and event forwarding
+
+`GestureDetector.SimpleOnGestureListener` supplies default implementations for gesture and double-tap callbacks, so subclass it and override only the needed methods.
+
+| Callback | Game action |
+| --- | --- |
+| `onDown(event)` | Return `true` to accept the gesture sequence |
+| `onSingleTapConfirmed(event)` | Aim after confirming the tap was not a double tap |
+| `onScroll(e1, e2, distanceX, distanceY)` | Aim using the current event `e2`; returns `Boolean` |
+| `onDoubleTap(event)` | Fire once for the recognized double tap |
+| `onDoubleTapEvent(event)` | Receives individual down/move/up events within the double-tap gesture |
+
+```kotlin
+inner class TouchHandler : GestureDetector.SimpleOnGestureListener() {
+    override fun onDown(event: MotionEvent): Boolean = true
+
+    override fun onSingleTapConfirmed(event: MotionEvent): Boolean {
+        updateCannon(event)
+        return true
+    }
+
+    override fun onScroll(e1: MotionEvent?, e2: MotionEvent,
+        distanceX: Float, distanceY: Float): Boolean {
+        updateCannon(e2)
+        return true
+    }
+
+    override fun onDoubleTap(event: MotionEvent): Boolean {
+        if (!game.isBulletFired()) game.fireBullet()
+        return true
+    }
+}
+```
+
+Create one listener, pass it to `GestureDetector(this, handler)`, and register it with `detector.setOnDoubleTapListener(handler)`. Forward the touch stream from an Activity/View callback using `detector.onTouchEvent(event)`; otherwise the detector never sees the events. Return `true` when handled, or delegate unhandled input to the superclass.
+
+**API clarification:** The slides also fire through `onDoubleTapEvent`; that callback may run multiple times, so guard against repeated firing. Returning `true` from `onDown` is important because the default `false` can suppress subsequent gesture callbacks. [Gesture guide](https://developer.android.com/develop/ui/views/touch-and-input/gestures/detector), [callback definitions](https://developer.android.com/reference/android/view/GestureDetector.SimpleOnGestureListener)
+
+### SoundPool and hit-state changes
+
+**SoundPool** loads and plays short game sound effects. Use `SoundPool.Builder().build()` rather than the deprecated multi-argument constructor. Store sound files such as `cannon_fire.wav` in `res/raw/` and reference them without extensions:
+
+```kotlin
+val pool = SoundPool.Builder().build()
+val fireSoundId = pool.load(this, R.raw.cannon_fire, 1)
+// Later, once loading has completed, when the bullet is fired:
+val streamId = pool.play(fireSoundId, 1f, 1f, 1, 0, 1f)
+```
+
+- `load(context, resourceId, priority)` returns a **sound ID**. Wait for successful loading, using `setOnLoadCompleteListener` when needed, before playing.
+- `play(soundId, leftVolume, rightVolume, priority, loop, rate)` returns a **stream ID** for that playback. Sound IDs identify loaded samples; stream IDs control individual playbacks with methods such as `pause`/`resume`.
+- Volumes range from `0f` to `1f`. `loop=0` plays once, `1` plays twice, `-1` repeats indefinitely. Playback rate `1f` is normal, with range `0.5f`–`2f`. Release the pool when finished. [SoundPool API](https://developer.android.com/reference/android/media/SoundPool)
+
+**Hit handling:** The model detects a bullet/duck collision. On the transition to “shot,” play the hit sound once, set the duck's shot state, and reload the bullet. The shot duck falls downward and displays `ducks[0]` rather than cycling wing frames. When it leaves the screen, clear the shot state and create/reposition the next duck. Do not replay the hit sound on every tick while the duck remains shot.
